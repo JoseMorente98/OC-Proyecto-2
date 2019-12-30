@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import org.grupo11.bomberman.LoggedUser;
+import org.grupo11.bomberman.Map;
 
 
 /**
@@ -31,10 +33,8 @@ public class GameView extends javax.swing.JFrame {
      * Creates new form Bomberman
      */
     public GameView() {
-        //Campo c = new Campo();
-        //this.contenedorJuego.add(c);
+        //userText.setText(LoggedUser.Nsesion);
         initComponents();
-        
     }
 
     /**
@@ -48,7 +48,7 @@ public class GameView extends javax.swing.JFrame {
 
         contenedorJuego = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        userText = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -83,19 +83,19 @@ public class GameView extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("jLabel5");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(960, 610, 80, 30);
+        jLabel3.setBounds(980, 610, 80, 30);
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("jLabel3");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(960, 530, 80, 30);
+        userText.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        userText.setForeground(new java.awt.Color(255, 255, 255));
+        userText.setText("jLabel4");
+        getContentPane().add(userText);
+        userText.setBounds(980, 530, 80, 30);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("jLabel4");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(960, 570, 80, 30);
+        jLabel5.setBounds(980, 570, 80, 30);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/grupo11/recursos/Juego.png"))); // NOI18N
         getContentPane().add(jLabel1);
@@ -169,10 +169,10 @@ public class GameView extends javax.swing.JFrame {
                     System.out.println("ERROR");
                 }
                 
-            //LUsers.MUNDO = texto;
+            LoggedUser.MUNDO = text;
                 
-            //Mapa mapa=new Mapa();
-            //mapa.CrearMapa(); 
+            Map mapa=new Map();
+            mapa.CrearMapa(); 
             
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(GameView.class.getName()).log(Level.SEVERE, null, ex);
@@ -252,12 +252,12 @@ public class GameView extends javax.swing.JFrame {
 
     //MOSTRAR VIDAS
     public void setLives(int lives) {
-        this.jLabel4.setText(String.valueOf(lives));
+        this.userText.setText(String.valueOf(lives));
     }
 
     //MOSTRAR PUNTOS
     public void setPoints(int points) {
-        this.jLabel4.setText(String.valueOf(points));
+        this.userText.setText(String.valueOf(points));
     }
 
     /*public boolean validCode(String str) {
@@ -272,7 +272,6 @@ public class GameView extends javax.swing.JFrame {
     private javax.swing.JPanel contenedorJuego;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -281,5 +280,6 @@ public class GameView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JLabel userText;
     // End of variables declaration//GEN-END:variables
 }

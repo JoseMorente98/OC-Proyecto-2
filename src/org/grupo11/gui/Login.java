@@ -5,6 +5,8 @@
  */
 package org.grupo11.gui;
 
+import org.grupo11.bomberman.LoggedUser;
+
 /**
  *
  * @author Jose Morente
@@ -126,6 +128,7 @@ public class Login extends javax.swing.JFrame {
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         if (user.getText().equals("admin") && password.getText().equals("admin")) {
             this.setVisible(false);
+            LoggedUser.Nsesion = "admin";
             GameView gv = new GameView();
             gv.setVisible(true);
         }
