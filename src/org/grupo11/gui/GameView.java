@@ -5,17 +5,36 @@
  */
 package org.grupo11.gui;
 
+//import org.grupo11.bomberman.Juego;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+
+
 /**
  *
  * @author Jose Morente
  */
-public class Bomberman extends javax.swing.JFrame {
-
+public class GameView extends javax.swing.JFrame {
+    /**
+     * PROPIEDADES JUEGO 
+     */
+    
+    
     /**
      * Creates new form Bomberman
      */
-    public Bomberman() {
+    public GameView() {
+        //Campo c = new Campo();
+        //this.contenedorJuego.add(c);
         initComponents();
+        
     }
 
     /**
@@ -27,47 +46,38 @@ public class Bomberman extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel4 = new javax.swing.JLabel();
         contenedorJuego = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1325, 730));
-        setPreferredSize(new java.awt.Dimension(1325, 730));
-        setSize(new java.awt.Dimension(1325, 730));
+        setMinimumSize(new java.awt.Dimension(1240, 740));
+        setResizable(false);
+        setSize(new java.awt.Dimension(1240, 740));
         getContentPane().setLayout(null);
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("jLabel3");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(960, 530, 80, 30);
 
         javax.swing.GroupLayout contenedorJuegoLayout = new javax.swing.GroupLayout(contenedorJuego);
         contenedorJuego.setLayout(contenedorJuegoLayout);
         contenedorJuegoLayout.setHorizontalGroup(
             contenedorJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
+            .addGap(0, 710, Short.MAX_VALUE)
         );
         contenedorJuegoLayout.setVerticalGroup(
             contenedorJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
+            .addGap(0, 710, Short.MAX_VALUE)
         );
 
         getContentPane().add(contenedorJuego);
-        contenedorJuego.setBounds(0, 0, 720, 720);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/grupo11/recursos/Juego.png"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1280, 720);
+        contenedorJuego.setBounds(0, 0, 710, 710);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -75,11 +85,21 @@ public class Bomberman extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(960, 610, 80, 30);
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("jLabel3");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(960, 530, 80, 30);
+
         jLabel5.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("jLabel4");
         getContentPane().add(jLabel5);
         jLabel5.setBounds(960, 570, 80, 30);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/grupo11/recursos/Juego.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 1280, 720);
 
         jMenuBar1.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
 
@@ -91,6 +111,16 @@ public class Bomberman extends javax.swing.JFrame {
         jMenuItem1.setText("Nuevo Juego");
         jMenuItem1.setToolTipText("");
         jMenu1.add(jMenuItem1);
+
+        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem4.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        jMenuItem4.setText("Cargar Archivo");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem4);
 
         jMenuBar1.add(jMenu1);
 
@@ -112,6 +142,45 @@ public class Bomberman extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        String auxiliar = "";
+        String text = "";
+        String rute = "";
+        
+        JFileChooser JfC = new JFileChooser();
+        JfC.setAcceptAllFileFilterUsed(false);
+        //JfC.setFileFilter(new FileNameExtensionFilter("Archivos con extension *." + Filtro_Archivo, Filtro_Archivo));
+        JfC.setCurrentDirectory(new File("Desktop"));
+        JfC.showOpenDialog(null);
+        File Archivo = JfC.getSelectedFile();
+        if (Archivo != null) {
+                rute = "" + Archivo;
+                FileReader FR;
+            try {
+                FR = new FileReader(Archivo);
+                
+                
+                try (BufferedReader Buffer = new BufferedReader(FR)) {
+                    while ((auxiliar = Buffer.readLine()) != null) {
+                        text += auxiliar + "\n";
+                    }
+//                    System.out.println(texto);
+                }catch (IOException e) {
+                    System.out.println("ERROR");
+                }
+                
+            //LUsers.MUNDO = texto;
+                
+            //Mapa mapa=new Mapa();
+            //mapa.CrearMapa(); 
+            
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(GameView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -121,6 +190,7 @@ public class Bomberman extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -129,23 +199,74 @@ public class Bomberman extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Bomberman.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GameView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Bomberman.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GameView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Bomberman.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GameView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Bomberman.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GameView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Bomberman().setVisible(true);
+                new GameView().setVisible(true);
             }
         });
+        
+        
     }
+    
+    /*
+	|--------------------------------------------------------------------------
+	| Game Related
+	|--------------------------------------------------------------------------
+	 */
+  /*  public void newGame() {
+        _game.getBoard().newJuego();
+    }
+
+    public void changeLevel(int i) {
+            _game.getBoard().changeLevel(i);
+    }
+
+    public void pauseGame() {
+            _game.getBoard().gamePause();
+    }
+
+    public void resumeGame() {
+            _game.getBoard().gameResume();
+    }
+
+    public boolean isRunning() {
+            return _game.isRunning();
+    }
+*/
+    //MOSTRAR TIEMPO
+    public void setTime(int time) {
+        this.jLabel3.setText(String.valueOf(time));
+    }
+
+    //MOSTRAR VIDAS
+    public void setLives(int lives) {
+        this.jLabel4.setText(String.valueOf(lives));
+    }
+
+    //MOSTRAR PUNTOS
+    public void setPoints(int points) {
+        this.jLabel4.setText(String.valueOf(points));
+    }
+
+    /*public boolean validCode(String str) {
+            return _game.getBoard().getLevel().validCode(str) != -1;
+    }
+
+    public void changeLevelByCode(String str) {
+            _game.getBoard().changeLevelByCode(str);
+    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel contenedorJuego;
@@ -159,5 +280,6 @@ public class Bomberman extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     // End of variables declaration//GEN-END:variables
 }

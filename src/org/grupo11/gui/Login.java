@@ -9,12 +9,14 @@ package org.grupo11.gui;
  *
  * @author Jose Morente
  */
-public class Inicio extends javax.swing.JFrame {
+public class Login extends javax.swing.JFrame {
 
     /**
-     * Creates new form Bomberman
+     * Creates new form Login
      */
-    public Inicio() {
+    public Login() {
+        setFocusable(true);
+        requestFocus();
         initComponents();
     }
 
@@ -30,17 +32,18 @@ public class Inicio extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        password = new javax.swing.JTextField();
+        user = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        loginButton = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1240, 720));
-        setPreferredSize(new java.awt.Dimension(1240, 720));
-        setSize(new java.awt.Dimension(1240, 720));
+        setMaximumSize(new java.awt.Dimension(1280, 740));
+        setMinimumSize(new java.awt.Dimension(1280, 740));
+        setPreferredSize(new java.awt.Dimension(1280, 740));
+        setSize(new java.awt.Dimension(1280, 740));
         getContentPane().setLayout(null);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 130)); // NOI18N
@@ -62,13 +65,18 @@ public class Inicio extends javax.swing.JFrame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(250, 570, 235, 40);
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI Light", 0, 22)); // NOI18N
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(70, 470, 250, 30);
+        password.setFont(new java.awt.Font("Segoe UI Light", 0, 22)); // NOI18N
+        getContentPane().add(password);
+        password.setBounds(70, 460, 250, 40);
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI Light", 0, 22)); // NOI18N
-        getContentPane().add(jTextField2);
-        jTextField2.setBounds(70, 370, 250, 30);
+        user.setFont(new java.awt.Font("Segoe UI Light", 0, 22)); // NOI18N
+        user.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userActionPerformed(evt);
+            }
+        });
+        getContentPane().add(user);
+        user.setBounds(70, 370, 250, 40);
 
         jButton1.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         jButton1.setText("Registrarme");
@@ -80,10 +88,15 @@ public class Inicio extends javax.swing.JFrame {
         getContentPane().add(jButton1);
         jButton1.setBounds(250, 610, 250, 40);
 
-        jButton2.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
-        jButton2.setText("Iniciar Sesión");
-        getContentPane().add(jButton2);
-        jButton2.setBounds(70, 520, 250, 40);
+        loginButton.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        loginButton.setText("Iniciar Sesión");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(loginButton);
+        loginButton.setBounds(70, 520, 250, 40);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Light", 0, 30)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -93,9 +106,6 @@ public class Inicio extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/grupo11/recursos/Wallpaper.png"))); // NOI18N
         jLabel1.setText("jLabel1");
-        jLabel1.setMaximumSize(new java.awt.Dimension(1325, 730));
-        jLabel1.setMinimumSize(new java.awt.Dimension(1325, 730));
-        jLabel1.setPreferredSize(new java.awt.Dimension(1325, 730));
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 1280, 720);
 
@@ -105,9 +115,21 @@ public class Inicio extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        Bomberman bomberman = new Bomberman();
-        bomberman.setVisible(true);
+        //Bomberman bomberman = new Bomberman();
+        //bomberman.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userActionPerformed
+
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        if (user.getText().equals("admin") && password.getText().equals("admin")) {
+            this.setVisible(false);
+            GameView gv = new GameView();
+            gv.setVisible(true);
+        }
+    }//GEN-LAST:event_loginButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -126,34 +148,35 @@ public class Inicio extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Inicio().setVisible(true);
+                //Campo c = new Campo();
+        
+                new Login().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JButton loginButton;
+    private javax.swing.JTextField password;
+    private javax.swing.JTextField user;
     // End of variables declaration//GEN-END:variables
 }
