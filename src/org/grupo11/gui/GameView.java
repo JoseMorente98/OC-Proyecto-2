@@ -83,19 +83,19 @@ public class GameView extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("jLabel5");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(980, 610, 80, 30);
+        jLabel3.setBounds(880, 610, 80, 30);
 
         userText.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         userText.setForeground(new java.awt.Color(255, 255, 255));
         userText.setText("jLabel4");
         getContentPane().add(userText);
-        userText.setBounds(980, 530, 80, 30);
+        userText.setBounds(880, 530, 80, 30);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("jLabel4");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(980, 570, 80, 30);
+        jLabel5.setBounds(880, 570, 80, 30);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/grupo11/recursos/Juego.png"))); // NOI18N
         getContentPane().add(jLabel1);
