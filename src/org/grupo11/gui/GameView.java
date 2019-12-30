@@ -50,6 +50,7 @@ public class GameView extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         userText = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -96,6 +97,10 @@ public class GameView extends javax.swing.JFrame {
         jLabel5.setText("jLabel4");
         getContentPane().add(jLabel5);
         jLabel5.setBounds(880, 570, 80, 30);
+
+        jButton1.setText("jButton1");
+        getContentPane().add(jButton1);
+        jButton1.setBounds(850, 580, 79, 25);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/grupo11/recursos/Juego.png"))); // NOI18N
         getContentPane().add(jLabel1);
@@ -270,6 +275,7 @@ public class GameView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel contenedorJuego;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
