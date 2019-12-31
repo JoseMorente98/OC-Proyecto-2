@@ -12,6 +12,7 @@ package org.grupo11.model;
 public class User {
     private String username;
     private String password;
+    private boolean aprovacion;
     
     public User(){
     }
@@ -19,6 +20,7 @@ public class User {
     public User(String usr, String pass){
         this.username = usr;
         this.password = pass;
+        this.aprovacion = false;
     }
 
     public String getUsername() {
@@ -35,6 +37,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean getAprovacion() {
+        return aprovacion;
+    }
+
+    public void setAprovacion(boolean aprovacion) {
+        this.aprovacion = aprovacion;
     }
     
 }

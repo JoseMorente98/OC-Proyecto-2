@@ -9,12 +9,12 @@ package org.grupo11.gui;
  *
  * @author Jose Morente
  */
-public class Administrador extends javax.swing.JFrame {
+public class ViewUsers extends javax.swing.JFrame {
 
     /**
      * Creates new form Administrador
      */
-    public Administrador() {
+    public ViewUsers() {
         setFocusable(true);
         requestFocus();
         initComponents();
@@ -39,15 +39,15 @@ public class Administrador extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 130)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 100)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Administrador");
+        jLabel2.setText("Gestión Usuarios");
         jLabel2.setToolTipText("");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(420, 90, 790, 210);
+        jLabel2.setBounds(430, 80, 790, 210);
 
         jButton2.setFont(new java.awt.Font("Segoe UI Light", 0, 30)); // NOI18N
-        jButton2.setText("TOP 10 Tiempos");
+        jButton2.setText("VER USUARIOS");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -57,7 +57,7 @@ public class Administrador extends javax.swing.JFrame {
         jButton2.setBounds(570, 360, 500, 50);
 
         jButton3.setFont(new java.awt.Font("Segoe UI Light", 0, 30)); // NOI18N
-        jButton3.setText("TOP 10 Puntos");
+        jButton3.setText("ELIMINAR USUARIOS");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -67,7 +67,7 @@ public class Administrador extends javax.swing.JFrame {
         jButton3.setBounds(570, 430, 500, 50);
 
         jButton4.setFont(new java.awt.Font("Segoe UI Light", 0, 30)); // NOI18N
-        jButton4.setText("Usuarios");
+        jButton4.setText("ACEPTAR USUARIOS");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -77,7 +77,7 @@ public class Administrador extends javax.swing.JFrame {
         jButton4.setBounds(570, 500, 500, 50);
 
         jButton1.setFont(new java.awt.Font("Segoe UI Light", 0, 30)); // NOI18N
-        jButton1.setText("Cerrar Sesión");
+        jButton1.setText("Regresar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -94,26 +94,26 @@ public class Administrador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+        ListUsers listUsers = new ListUsers();
+        listUsers.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-        Game gv = new Game();
-        gv.setVisible(true);
+       DeleteUser deleteUser = new DeleteUser();
+       deleteUser.setVisible(true);
+       this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        ViewUsers viewUsers = new ViewUsers();
-        viewUsers.setVisible(true);
+        AcceptUser acceptUser = new AcceptUser();
+        acceptUser.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Login login = new Login();
-        login.setVisible(true);
+        Administrador administrador = new Administrador();
+        administrador.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -134,20 +134,21 @@ public class Administrador extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Administrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewUsers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Administrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewUsers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Administrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewUsers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Administrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewUsers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Administrador().setVisible(true);
+                new ViewUsers().setVisible(true);
             }
         });
     }

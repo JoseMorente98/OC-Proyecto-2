@@ -5,7 +5,9 @@
  */
 package org.grupo11.gui;
 
+import javax.swing.JOptionPane;
 import org.grupo11.bomberman.LoggedUser;
+import org.grupo11.model.User;
 
 /**
  *
@@ -109,13 +111,16 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/grupo11/recursos/Wallpaper.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1280, 720);
+        jLabel1.setBounds(0, -10, 1280, 730);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
+        Register rg = new Register();
+        rg.setVisible(true);
         this.setVisible(false);
         //Bomberman bomberman = new Bomberman();
         //bomberman.setVisible(true);
@@ -126,11 +131,33 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_userActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        if (user.getText().equals("admin") && password.getText().equals("admin")) {
+        if (user.getText().equals("ADMIN") && password.getText().equals("ORGA_DIC_2019")) {
+            LoggedUser.Nsesion = "ADMIN";
+            JOptionPane.showMessageDialog(null, user.getText() + password.getText());
+            Administrador admin = new Administrador();
+            admin.setVisible(true);
+            JOptionPane.showMessageDialog(null, "Bienvenido administrador");
             this.setVisible(false);
-            LoggedUser.Nsesion = "admin";
-            Usuario gv = new Usuario();
-            gv.setVisible(true);
+            
+        } else {
+            boolean existente = false;
+            for (User user : LoggedUser.solicitud) {
+                if (user.getUsername().equals(this.user.getText()) && user.getPassword().equals(password.getText())) {
+                    existente = true;
+                    if (user.getAprovacion() == true) {
+                        LoggedUser.Nsesion = user.getUsername();
+                        Usuario gv = new Usuario();
+                        gv.setVisible(true);
+                        this.setVisible(false);
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Su cuenta no se ha aprovado todavía");
+                    }
+                }
+            }
+            if (existente == false) {
+                JOptionPane.showMessageDialog(null, "Usuario no encontrado");
+            }
         }
     }//GEN-LAST:event_loginButtonActionPerformed
 
@@ -165,7 +192,7 @@ public class Login extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 //Campo c = new Campo();
-        
+
                 new Login().setVisible(true);
             }
         });
