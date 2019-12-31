@@ -85,6 +85,7 @@ public class Game extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        loginButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         life = new javax.swing.JLabel();
@@ -96,6 +97,16 @@ public class Game extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1240, 740));
         getContentPane().setLayout(null);
+
+        loginButton.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        loginButton.setText("<< Regresar");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(loginButton);
+        loginButton.setBounds(1010, 630, 175, 40);
 
         jTable1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jTable1.setFont(new java.awt.Font("Segoe UI Light", 0, 36)); // NOI18N
@@ -124,25 +135,25 @@ public class Game extends javax.swing.JFrame {
         life.setForeground(new java.awt.Color(255, 255, 255));
         life.setText("--");
         getContentPane().add(life);
-        life.setBounds(1010, 550, 50, 30);
+        life.setBounds(1010, 530, 50, 30);
 
         time.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         time.setForeground(new java.awt.Color(255, 255, 255));
         time.setText("--");
         getContentPane().add(time);
-        time.setBounds(1010, 590, 50, 30);
+        time.setBounds(1010, 570, 50, 30);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Life:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(940, 550, 40, 30);
+        jLabel3.setBounds(940, 530, 40, 30);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Time:");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(940, 590, 60, 30);
+        jLabel6.setBounds(940, 570, 60, 30);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/grupo11/recursos/Juego.png"))); // NOI18N
         getContentPane().add(jLabel1);
@@ -150,6 +161,12 @@ public class Game extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        Usuario usuario = new Usuario();
+        this.setVisible(false);
+        usuario.setVisible(true);
+    }//GEN-LAST:event_loginButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -193,6 +210,7 @@ public class Game extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel life;
+    private javax.swing.JButton loginButton;
     private javax.swing.JLabel time;
     // End of variables declaration//GEN-END:variables
 }

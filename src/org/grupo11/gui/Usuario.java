@@ -41,6 +41,7 @@ public class Usuario extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -50,14 +51,14 @@ public class Usuario extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jButton1.setFont(new java.awt.Font("Segoe UI Light", 0, 30)); // NOI18N
-        jButton1.setText("Iniciar Sesión");
+        jButton1.setText("Cerrar Sesión");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(570, 500, 500, 50);
+        jButton1.setBounds(570, 570, 500, 50);
 
         jButton2.setFont(new java.awt.Font("Segoe UI Light", 0, 30)); // NOI18N
         jButton2.setText("Cargar Archivo");
@@ -79,6 +80,16 @@ public class Usuario extends javax.swing.JFrame {
         getContentPane().add(jButton3);
         jButton3.setBounds(570, 430, 500, 50);
 
+        jButton4.setFont(new java.awt.Font("Segoe UI Light", 0, 30)); // NOI18N
+        jButton4.setText("Iniciar Sesión");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4);
+        jButton4.setBounds(570, 500, 500, 50);
+
         jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 130)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Usuario");
@@ -94,7 +105,9 @@ public class Usuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        Login login = new Login();
+        login.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -144,6 +157,10 @@ public class Usuario extends javax.swing.JFrame {
         gv.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -183,6 +200,7 @@ public class Usuario extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
