@@ -129,7 +129,7 @@ public class Login extends javax.swing.JFrame {
         if (user.getText().equals("admin") && password.getText().equals("admin")) {
             this.setVisible(false);
             LoggedUser.Nsesion = "admin";
-            GameView gv = new GameView();
+            Usuario gv = new Usuario();
             gv.setVisible(true);
         }
     }//GEN-LAST:event_loginButtonActionPerformed

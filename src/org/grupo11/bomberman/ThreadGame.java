@@ -6,7 +6,6 @@
 package org.grupo11.bomberman;
 
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.logging.Level;
@@ -227,7 +226,7 @@ public class ThreadGame extends Thread{
     
     
     public void CreateEnemy(){
-        Map MAP=new Map();
+        Map MAP = new Map();
         MAP.CreateMap();
         
         double enemigo = Math.pow(2, nivel);

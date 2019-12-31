@@ -89,10 +89,16 @@ public class Game extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         life = new javax.swing.JLabel();
         time = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1240, 740));
+        getContentPane().setLayout(null);
 
         jTable1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jTable1.setFont(new java.awt.Font("Segoe UI Light", 0, 36)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -108,38 +114,39 @@ public class Game extends javax.swing.JFrame {
         jTable1.setIntercellSpacing(new java.awt.Dimension(0, 0));
         jTable1.setMaximumSize(new java.awt.Dimension(0, 0));
         jTable1.setMinimumSize(new java.awt.Dimension(0, 0));
+        jTable1.setRowHeight(50);
         jScrollPane1.setViewportView(jTable1);
 
-        life.setText("jLabel1");
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(0, 0, 720, 720);
 
-        time.setText("jLabel2");
+        life.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        life.setForeground(new java.awt.Color(255, 255, 255));
+        life.setText("--");
+        getContentPane().add(life);
+        life.setBounds(1010, 550, 50, 30);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(290, 290, 290)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(life)
-                    .addComponent(time))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addComponent(life)
-                .addGap(18, 18, 18)
-                .addComponent(time)
-                .addGap(24, 24, 24))
-        );
+        time.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        time.setForeground(new java.awt.Color(255, 255, 255));
+        time.setText("--");
+        getContentPane().add(time);
+        time.setBounds(1010, 590, 50, 30);
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Life:");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(940, 550, 40, 30);
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Time:");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(940, 590, 60, 30);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/grupo11/recursos/Juego.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 1280, 720);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -180,6 +187,9 @@ public class Game extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel life;

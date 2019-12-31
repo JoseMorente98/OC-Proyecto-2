@@ -30,6 +30,7 @@ public class GameView extends javax.swing.JFrame {
     /**
      * PROPIEDADES JUEGO
      */
+    KeyListener kl;
 
     /**
      * Creates new form Bomberman
@@ -37,9 +38,126 @@ public class GameView extends javax.swing.JFrame {
     public GameView() {
         //userText.setText(LoggedUser.Nsesion);
         initComponents();
+        /*LoggedUser.tgame.life = 3;
+        try {
+            LoggedUser.tgame = new ThreadGame(jTable1, life, time);
+        } catch (Exception e) {
+        }
+        */
         
+        //LoggedUser.tgame.start();
+        LoggedUser.tgame.life = 3;
+        LoggedUser.tgame = new ThreadGame(jTable1,life,time);
+
+        kl = new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent ke) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                System.out.print("entro");
+            }
+
+            @Override
+            public void keyReleased(KeyEvent ke) {
+            if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
+                //IZQUIEDA
+                    ThreadGame.movement = 1;
+                    System.out.println("IZQUIEDA");
+                }
+            if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
+                //DERCHA
+                    ThreadGame.movement = 2;
+                    System.out.println("DERCHA");
+                }
+            if (ke.getKeyCode() == KeyEvent.VK_UP) {
+                //ARRIBA
+                    ThreadGame.movement = 3;
+                    System.out.println("ARRIBA");
+                }
+            if (ke.getKeyCode() == KeyEvent.VK_DOWN) {
+                //ABAJO
+                    ThreadGame.movement = 4;
+                    System.out.println("ABAJO");
+                }
+            if (ke.getKeyCode() == KeyEvent.VK_P) {
+                //ABAJO
+                    ThreadGame.movement = 5;
+                    System.out.println("PAUSA");
+                }
+            if (ke.getKeyCode() == KeyEvent.VK_A) {
+                //BOMBA (A)
+                    ThreadGame.movement = 6;
+                    System.out.println("BOMBA");
+                }
+            
+            }
+            
+        };
+        this.addKeyListener(kl);
         
-        
+        //Mostrar();
+        LoggedUser.tgame.start();
+                
+
+    }
+    
+    public void initGame() {
+        LoggedUser.tgame.life = 3;
+        LoggedUser.tgame = new ThreadGame(jTable1, life, time);
+        kl = new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent ke) {
+                System.out.println(ke);
+            }
+
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                System.out.print("entro");
+                System.out.println(ke);
+            }
+
+            @Override
+            public void keyReleased(KeyEvent ke) {
+                System.out.print(ke);
+            if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
+                //IZQUIEDA
+                    ThreadGame.movement = 1;
+                    System.out.println("IZQUIEDA");
+                }
+            if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
+                //DERCHA
+                    ThreadGame.movement = 2;
+                    System.out.println("DERCHA");
+                }
+            if (ke.getKeyCode() == KeyEvent.VK_UP) {
+                //ARRIBA
+                    ThreadGame.movement = 3;
+                    System.out.println("ARRIBA");
+                }
+            if (ke.getKeyCode() == KeyEvent.VK_DOWN) {
+                //ABAJO
+                    ThreadGame.movement = 4;
+                    System.out.println("ABAJO");
+                }
+            if (ke.getKeyCode() == KeyEvent.VK_P) {
+                //ABAJO
+                    ThreadGame.movement = 5;
+                    System.out.println("PAUSA");
+                }
+            if (ke.getKeyCode() == KeyEvent.VK_A) {
+                //BOMBA (A)
+                    ThreadGame.movement = 6;
+                    System.out.println("BOMBA");
+                }
+            
+            }
+            
+        };
+        jTable1.addKeyListener(kl);
+        //Mostrar();
+        LoggedUser.tgame.start();
     }
 
     /**
@@ -121,6 +239,7 @@ public class GameView extends javax.swing.JFrame {
         usrText.setBounds(1030, 500, 80, 30);
 
         jTable1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jTable1.setFont(new java.awt.Font("Segoe UI Light", 0, 36)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -136,10 +255,11 @@ public class GameView extends javax.swing.JFrame {
         jTable1.setIntercellSpacing(new java.awt.Dimension(0, 0));
         jTable1.setMaximumSize(new java.awt.Dimension(0, 0));
         jTable1.setMinimumSize(new java.awt.Dimension(0, 0));
+        jTable1.setRowHeight(50);
         jScrollPane1.setViewportView(jTable1);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(90, 30, 530, 260);
+        jScrollPane1.setBounds(0, 0, 720, 720);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/grupo11/recursos/Juego.png"))); // NOI18N
         getContentPane().add(jLabel1);
@@ -154,6 +274,11 @@ public class GameView extends javax.swing.JFrame {
         jMenuItem1.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         jMenuItem1.setText("Nuevo Juego");
         jMenuItem1.setToolTipText("");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
@@ -216,12 +341,11 @@ public class GameView extends javax.swing.JFrame {
 
                 Map mapa = new Map();
                 mapa.CreateMap();
-
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(GameView.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
+        this.initGame();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
@@ -231,6 +355,12 @@ public class GameView extends javax.swing.JFrame {
         game.setVisible(true);
 
     }//GEN-LAST:event_startActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        //INICIAR JUEGO
+                this.initGame();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments

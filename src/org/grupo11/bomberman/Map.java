@@ -12,6 +12,10 @@ import org.grupo11.model.Element;
  * @author Juan José Ramos
  */
 public class Map {
+
+    public Map() {
+    }
+        
     public void CreateMap(){
         LoggedUser.BACK_MAP = new Element[12][12];
         
@@ -55,10 +59,12 @@ public class Map {
     }
     
     public void FrontMap(){
+        //System.out.print("ENTRO AL FRONT MAP");
         LoggedUser.FRONT_MAPA = new String[12][12];
         
-        for (int i = 0; i < LoggedUser.BACK_MAP.length; i++) {
-            for (int j = 0; j < LoggedUser.BACK_MAP[i].length; j++) {
+        for (int i = 0; i < 12; i++) {
+            //System.out.println(i);
+            for (int j = 0; j < 12; j++) {
                 
                 if (LoggedUser.BACK_MAP[i][j].isPlayer()) {
                     LoggedUser.FRONT_MAPA[i][j] = "J";
