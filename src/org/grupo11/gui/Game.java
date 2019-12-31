@@ -100,6 +100,7 @@ public class Game extends javax.swing.JFrame {
 
         loginButton.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         loginButton.setText("<< Regresar");
+        loginButton.setFocusable(false);
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginButtonActionPerformed(evt);
@@ -109,7 +110,7 @@ public class Game extends javax.swing.JFrame {
         loginButton.setBounds(1010, 630, 175, 40);
 
         jTable1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jTable1.setFont(new java.awt.Font("Segoe UI Light", 0, 36)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -125,7 +126,7 @@ public class Game extends javax.swing.JFrame {
         jTable1.setIntercellSpacing(new java.awt.Dimension(0, 0));
         jTable1.setMaximumSize(new java.awt.Dimension(0, 0));
         jTable1.setMinimumSize(new java.awt.Dimension(0, 0));
-        jTable1.setRowHeight(50);
+        jTable1.setRowHeight(30);
         jScrollPane1.setViewportView(jTable1);
 
         getContentPane().add(jScrollPane1);
