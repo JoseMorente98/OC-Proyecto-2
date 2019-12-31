@@ -12,7 +12,7 @@ import org.grupo11.model.Element;
  * @author Juan José Ramos
  */
 public class Map {
-    public void CrearMapa(){
+    public void CreateMap(){
         LoggedUser.BACK_MAP = new Element[12][12];
         
         String [] linea = LoggedUser.MUNDO.split("\n");
@@ -20,17 +20,17 @@ public class Map {
         
         for (int i = 0; i < linea.length; i++) {
             objeto = linea[i].toCharArray();
-            
             for (int j = 0; j < objeto.length; j++) {
                 BoolObjeto(i, j, objeto[j]);
             }
         }
         
         FrontMap();
+        
     }
     
     public void BoolObjeto(int fila, int columna, char objeto){
-        Element objs=new Element();
+        Element objs=new Element(false, false, false, false, false, false, false);
         
         switch(objeto){
             case 'X':

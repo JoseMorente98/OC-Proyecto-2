@@ -6,7 +6,8 @@
 package org.grupo11.gui;
 
 //import org.grupo11.bomberman.Juego;
-
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,26 +16,30 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.table.DefaultTableModel;
 import org.grupo11.bomberman.LoggedUser;
 import org.grupo11.bomberman.Map;
-
+import org.grupo11.bomberman.ThreadGame;
 
 /**
  *
  * @author Jose Morente
  */
 public class GameView extends javax.swing.JFrame {
+
     /**
-     * PROPIEDADES JUEGO 
+     * PROPIEDADES JUEGO
      */
-    
-    
+
     /**
      * Creates new form Bomberman
      */
     public GameView() {
         //userText.setText(LoggedUser.Nsesion);
         initComponents();
+        
+        
+        
     }
 
     /**
@@ -46,11 +51,15 @@ public class GameView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        contenedorJuego = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         userText = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        time = new javax.swing.JLabel();
+        start = new javax.swing.JButton();
+        life = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        usrText = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -66,41 +75,71 @@ public class GameView extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1240, 740));
         getContentPane().setLayout(null);
 
-        javax.swing.GroupLayout contenedorJuegoLayout = new javax.swing.GroupLayout(contenedorJuego);
-        contenedorJuego.setLayout(contenedorJuegoLayout);
-        contenedorJuegoLayout.setHorizontalGroup(
-            contenedorJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 710, Short.MAX_VALUE)
-        );
-        contenedorJuegoLayout.setVerticalGroup(
-            contenedorJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 710, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(contenedorJuego);
-        contenedorJuego.setBounds(0, 0, 710, 710);
-
         jLabel3.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("jLabel5");
+        jLabel3.setText("Life");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(880, 610, 80, 30);
+        jLabel3.setBounds(970, 540, 40, 30);
 
         userText.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         userText.setForeground(new java.awt.Color(255, 255, 255));
-        userText.setText("jLabel4");
+        userText.setText("User");
         getContentPane().add(userText);
-        userText.setBounds(880, 530, 80, 30);
+        userText.setBounds(970, 500, 50, 30);
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("jLabel4");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(880, 570, 80, 30);
+        time.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        time.setForeground(new java.awt.Color(255, 255, 255));
+        time.setText("--");
+        getContentPane().add(time);
+        time.setBounds(1030, 570, 80, 30);
 
-        jButton1.setText("jButton1");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(850, 580, 79, 25);
+        start.setText("jButton1");
+        start.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startActionPerformed(evt);
+            }
+        });
+        getContentPane().add(start);
+        start.setBounds(980, 610, 79, 25);
+
+        life.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        life.setForeground(new java.awt.Color(255, 255, 255));
+        life.setText("--");
+        getContentPane().add(life);
+        life.setBounds(1030, 540, 80, 30);
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Time");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(970, 570, 80, 30);
+
+        usrText.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        usrText.setForeground(new java.awt.Color(255, 255, 255));
+        usrText.setText("--");
+        getContentPane().add(usrText);
+        usrText.setBounds(1030, 500, 80, 30);
+
+        jTable1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTable1.setFocusable(false);
+        jTable1.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        jTable1.setMaximumSize(new java.awt.Dimension(0, 0));
+        jTable1.setMinimumSize(new java.awt.Dimension(0, 0));
+        jScrollPane1.setViewportView(jTable1);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(90, 30, 530, 260);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/grupo11/recursos/Juego.png"))); // NOI18N
         getContentPane().add(jLabel1);
@@ -151,7 +190,7 @@ public class GameView extends javax.swing.JFrame {
         String auxiliar = "";
         String text = "";
         String rute = "";
-        
+
         JFileChooser JfC = new JFileChooser();
         JfC.setAcceptAllFileFilterUsed(false);
         //JfC.setFileFilter(new FileNameExtensionFilter("Archivos con extension *." + Filtro_Archivo, Filtro_Archivo));
@@ -159,32 +198,39 @@ public class GameView extends javax.swing.JFrame {
         JfC.showOpenDialog(null);
         File Archivo = JfC.getSelectedFile();
         if (Archivo != null) {
-                rute = "" + Archivo;
-                FileReader FR;
+            rute = "" + Archivo;
+            FileReader FR;
             try {
                 FR = new FileReader(Archivo);
-                
-                
+
                 try (BufferedReader Buffer = new BufferedReader(FR)) {
                     while ((auxiliar = Buffer.readLine()) != null) {
                         text += auxiliar + "\n";
                     }
 //                    System.out.println(texto);
-                }catch (IOException e) {
+                } catch (IOException e) {
                     System.out.println("ERROR");
                 }
-                
-            LoggedUser.MUNDO = text;
-                
-            Map mapa=new Map();
-            mapa.CrearMapa(); 
-            
+
+                LoggedUser.MUNDO = text;
+
+                Map mapa = new Map();
+                mapa.CreateMap();
+
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(GameView.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
+        
+       
+        Game game = new Game();
+        game.setVisible(true);
+
+    }//GEN-LAST:event_startActionPerformed
 
     /**
      * @param args the command line arguments
@@ -195,7 +241,7 @@ public class GameView extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -221,16 +267,15 @@ public class GameView extends javax.swing.JFrame {
                 new GameView().setVisible(true);
             }
         });
-        
-        
+
     }
-    
+
     /*
 	|--------------------------------------------------------------------------
 	| Game Related
 	|--------------------------------------------------------------------------
-	 */
-  /*  public void newGame() {
+     */
+ /*  public void newGame() {
         _game.getBoard().newJuego();
     }
 
@@ -249,7 +294,7 @@ public class GameView extends javax.swing.JFrame {
     public boolean isRunning() {
             return _game.isRunning();
     }
-*/
+     */
     //MOSTRAR TIEMPO
     public void setTime(int time) {
         this.jLabel3.setText(String.valueOf(time));
@@ -274,11 +319,9 @@ public class GameView extends javax.swing.JFrame {
     }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel contenedorJuego;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -286,6 +329,12 @@ public class GameView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel life;
+    private javax.swing.JButton start;
+    private javax.swing.JLabel time;
     private javax.swing.JLabel userText;
+    private javax.swing.JLabel usrText;
     // End of variables declaration//GEN-END:variables
 }

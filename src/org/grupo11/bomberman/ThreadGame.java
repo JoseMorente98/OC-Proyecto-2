@@ -7,6 +7,7 @@ package org.grupo11.bomberman;
 
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,9 +19,9 @@ import org.grupo11.model.Bomb;
  * @author Juan José Ramos
  */
 public class ThreadGame extends Thread{
-    //Mapa mapa=new Mapa();
+    Map map=new Map();
     
-    ArrayList<Bomb> arrayBomb =new ArrayList<Bomb>();
+    LinkedList<Bomb> arrayBomb =new LinkedList<Bomb>();
     
     private JTable jTable;
     private JLabel jLife;
@@ -29,7 +30,7 @@ public class ThreadGame extends Thread{
     public static int movement = 0;
     public  int life = 3;
     
-    public  boolean pausa = false;
+    public  boolean pause = false;
     
     public  boolean bonus = false;
     public  int bomba;
@@ -57,23 +58,23 @@ public class ThreadGame extends Thread{
     
     @Override
     public void run(){
-        //CrearEnemigo();
+        CreateEnemy();
         jLife.setText(Integer.toString(life));
         
         while (life>0) {
             try {
 
-                if (pausa == false) {
-                    //Jugador();
-                    //Enemigo();
-                    //Bomba();
-                    //Mostrar();
+                if (pause == false) {
+                    Player();
+                    Enemy();
+                    Bomb();
+                    Show();
                     
                     
                     tiempoEspera +=100;
                     jTime.setText(Integer.toString((tiempo+=100)/1000));
                 }else{
-                    //Pausa();
+                    //pause();
                 }
                 
                 ThreadGame.sleep(100);  //SALTOS CAD 1.0 s
@@ -83,40 +84,40 @@ public class ThreadGame extends Thread{
         }
         
             if(life == 0){
-                //LoggedUser.hilo.stop();
+                LoggedUser.tgame.stop();
             }
     }
     
     
-    /*
-    public void Jugador(){
+    
+    public void Player(){
         for (int i = 0; i < LoggedUser.BACK_MAP.length; i++) {
             for (int j = 0; j < LoggedUser.BACK_MAP[i].length; j++) {
-                if (LoggedUser.BACK_MAP[i][j].isJugador()) {
+                if (LoggedUser.BACK_MAP[i][j].isPlayer()) {
                     switch(movement){
                         case 1:
                             // IZQUIERDA
-                            MoverJugador(i, j, i, j-1);
+                            movePlayer(i, j, i, j-1);
                             break;
                         case 2:
                             //  DERECHA
-                            MoverJugador(i, j, i, j+1);
+                            movePlayer(i, j, i, j+1);
                             break;
                         case 3:
                             //  ARRIBA
-                            MoverJugador(i, j, i-1, j);
+                            movePlayer(i, j, i-1, j);
                             break;
                         case 4:
                             //  ABAJO
-                            MoverJugador(i, j, i+1, j);
+                            movePlayer(i, j, i+1, j);
                             break;
                         case 5:
-                            //  PAUSA
-                            Pausa();
+                            //  pause
+                            Pause();
                             break;
                         case 6:
                             //  BOMBA
-                            LBomba.add(new Bomba(i, j));
+                            arrayBomb.add(new Bomb(i, j));
                             break;
                     }
                 }
@@ -124,64 +125,66 @@ public class ThreadGame extends Thread{
         }
     }
     
-    public void MoverJugador(int afila, int acolum, int dfila, int dcolum){
+    public void movePlayer(int aRow, int aColumn, int dRow, int dColumn){
         try{
-            if (LoggedUser.BACK_MAP[dfila][dcolum].isBomba() || LoggedUser.BACK_MAP[dfila][dcolum].isLadrillo()) {
+            if (LoggedUser.BACK_MAP[dRow][dColumn].isBomb()|| LoggedUser.BACK_MAP[dRow][dColumn].isBrick()) {
                 //  NO SE MUEVE
             }
-            else if (LoggedUser.BACK_MAP[dfila][dcolum].isEnemigo()) {
+            else if (LoggedUser.BACK_MAP[dRow][dColumn].isEnemy()) {
                 //  NO SE MUEVE Y RECIVE DAÑO
                 life--;
                 jLife.setText(Integer.toString(life));
             }
-            else if (LoggedUser.BACK_MAP[dfila][dcolum].isExplocion()) {
+            else if (LoggedUser.BACK_MAP[dRow][dColumn].isExplocion()) {
                 //  SE MUEVE Y RECIVE DAÑO
-                LoggedUser.BACK_MAP[afila][acolum].setJugador(false);
-                LoggedUser.BACK_MAP[dfila][dcolum].setJugador(true);
+                LoggedUser.BACK_MAP[aRow][aColumn].setPlayer(false);
+                LoggedUser.BACK_MAP[dRow][dColumn].setPlayer(true);
             }
-            else if (LoggedUser.BACK_MAP[dfila][dcolum].isBonus()) {
+            else if (LoggedUser.BACK_MAP[dRow][dColumn].isBonus()) {
                 //  SE MUEVE Y RECIVE BONUS
-                LoggedUser.BACK_MAP[dfila][dcolum].setBonus(false);
+                LoggedUser.BACK_MAP[dRow][dColumn].setBonus(false);
                 bonus = true;
                 bomba = 3;
                 
-                LoggedUser.BACK_MAP[afila][acolum].setJugador(false);
-                LoggedUser.BACK_MAP[dfila][dcolum].setJugador(true);
+                LoggedUser.BACK_MAP[aRow][aColumn].setPlayer(false);
+                LoggedUser.BACK_MAP[dRow][dColumn].setPlayer(true);
                 
             }
-            else if (LoggedUser.BACK_MAP[dfila][dcolum].isKey()) {
+            else if (LoggedUser.BACK_MAP[dRow][dColumn].isKey()) {
                 //  GANA NIVEL
-                LoggedUser.BACK_MAP[afila][acolum].setBonus(false);
+                LoggedUser.BACK_MAP[aRow][aColumn].setBonus(false);
                 bonus = false;
                 bomba=0;
                 explosion=1;
                 
                 nivel++;
                 
-                //LoggedUser.BACK_MAP[afila][acolum].setJugador(false);
-                //LoggedUser.BACK_MAP[dfila][dcolum].setJugador(true);
+                //LoggedUser.BACK_MAP[aRow][aColumn].setPlayer(false);
+                //LoggedUser.BACK_MAP[dRow][dColumn].setPlayer(true);
                 life=3;
                 jLife.setText(Integer.toString(life));
-                CrearEnemigo();
+                CreateEnemy();
             }
-            else if (afila == dfila && acolum == dcolum) {
+            else if (aRow == dRow && aColumn == dColumn) {
                 //  GANA NIVEL
-                LoggedUser.BACK_MAP[afila][acolum].setBomba(true);
+                LoggedUser.BACK_MAP[aRow][aColumn].setBomb(true);
             }
             else {
                 //  SE MUEVE
-                LoggedUser.BACK_MAP[afila][acolum].setJugador(false);
-                LoggedUser.BACK_MAP[dfila][dcolum].setJugador(true);
+                LoggedUser.BACK_MAP[aRow][aColumn].setPlayer(false);
+                LoggedUser.BACK_MAP[dRow][dColumn].setPlayer(true);
             }
         }catch(Exception e){
-            System.out.println("FALLO movement");
+            System.out.println("FALLO MOVIMIENTO");
         }
         movement=0;
     }
     
-    public void Mostrar(){
+    public void Show(){
+        
+        
         try {
-            mapa.FrontMap();
+            map.FrontMap();
             
             getjTable().setModel(new javax.swing.table.DefaultTableModel(
                 LoggedUser.FRONT_MAPA,
@@ -196,19 +199,19 @@ public class ThreadGame extends Thread{
     
     
     
-    public void Pausa(){
-        if (pausa == true && movement == 5) {
-            pausa = false;
+    public void Pause(){
+        if (pause == true && movement == 5) {
+            pause = false;
         }
-        else if (pausa == false && movement == 5) {
-            pausa = true;
+        else if (pause == false && movement == 5) {
+            pause = true;
         }
         
-        MostrarPausa();
+        ShowPause();
         movement = 0;
     }
     
-    public void MostrarPausa(){
+    public void ShowPause(){
         try {
             getjTable().setModel(new javax.swing.table.DefaultTableModel(
                 LoggedUser.Pausa,
@@ -223,33 +226,32 @@ public class ThreadGame extends Thread{
     
     
     
-    public void CrearEnemigo(){
-        Mapa MAPA=new Mapa();
-        MAPA.CrearMapa();
+    public void CreateEnemy(){
+        Map MAP=new Map();
+        MAP.CreateMap();
         
         double enemigo = Math.pow(2, nivel);
         
         for (int i = 0; i < enemigo; i++) {
             rn1=new Random();
             rn2=new Random();
-            MostrarEnenmigo();
+            ShowEnemy();
         }
     }
     
-    public void MostrarEnenmigo(){
-            
+    public void ShowEnemy(){
             int fila = rn1.nextInt(12);
             int columna = rn2.nextInt(12);
             
         try {
             
-            while (LoggedUser.BACK_MAP[fila][columna].isVacio()==true) {
+            while (LoggedUser.BACK_MAP[fila][columna].isEmpty()==true) {
                 System.out.println("CREANDO ENEMIGO...");
             fila = rn1.nextInt(12);
             columna = rn2.nextInt(12);
             }
             
-                LoggedUser.BACK_MAP[fila][columna].setEnemigo(true);
+                LoggedUser.BACK_MAP[fila][columna].setEnemy(true);
                 System.out.println("ENEMIGO CREADO");
             
         } catch (Exception e) {
@@ -257,13 +259,13 @@ public class ThreadGame extends Thread{
         }
     }
     
-    public void Enemigo(){
+    public void Enemy(){
         
         if (tiempoEspera==1000) {
             
             for (int i = 0; i < LoggedUser.BACK_MAP.length; i++) {
             for (int j = 0; j < LoggedUser.BACK_MAP[i].length; j++) {
-                if (LoggedUser.BACK_MAP[i][j].isEnemigo()) {
+                if (LoggedUser.BACK_MAP[i][j].isEnemy()) {
                     
                     rn1 = new Random();
                     int MoverE = 1+rn1.nextInt(5);
@@ -295,62 +297,62 @@ public class ThreadGame extends Thread{
         
     }
     
-    public void MoverEnemigo(int afila, int acolum, int dfila, int dcolum){
+    public void MoverEnemigo(int aRow, int aColumn, int dRow, int dColumn){
         try{
-            if (LoggedUser.BACK_MAP[dfila][dcolum].isBomba() || LoggedUser.BACK_MAP[dfila][dcolum].isLadrillo()) {
+            if (LoggedUser.BACK_MAP[dRow][dColumn].isBomb()|| LoggedUser.BACK_MAP[dRow][dColumn].isBrick()) {
                 //  NO SE MUEVE
             }
-            else if (LoggedUser.BACK_MAP[dfila][dcolum].isJugador()) {
+            else if (LoggedUser.BACK_MAP[dRow][dColumn].isPlayer()) {
                 //  NO SE MUEVE E INFLINGE DAÑO
                 life--;
                 jLife.setText(Integer.toString(life));
             }
-            else if (LoggedUser.BACK_MAP[dfila][dcolum].isExplocion()) {
+            else if (LoggedUser.BACK_MAP[dRow][dColumn].isExplocion()) {
                 //  SE MUEVE Y DESAPAERECE
-                LoggedUser.BACK_MAP[afila][acolum].setEnemigo(false);
+                LoggedUser.BACK_MAP[aRow][aColumn].setEnemy(false);
             }
-            else if (LoggedUser.BACK_MAP[dfila][dcolum].isBonus()) {
+            else if (LoggedUser.BACK_MAP[dRow][dColumn].isBonus()) {
                 //  NO SE MUEVE
             }
-            else if (LoggedUser.BACK_MAP[dfila][dcolum].isKey()) {
+            else if (LoggedUser.BACK_MAP[dRow][dColumn].isKey()) {
                 //  NO SE MUEVE
             }
             else {
                 //  SE MUEVE
-                LoggedUser.BACK_MAP[afila][acolum].setEnemigo(false);
-                LoggedUser.BACK_MAP[dfila][dcolum].setEnemigo(true);
+                LoggedUser.BACK_MAP[aRow][aColumn].setEnemy(false);
+                LoggedUser.BACK_MAP[dRow][dColumn].setEnemy(true);
             }
         }catch(Exception e){
-            System.out.println("FALLO movement ENEMIGO");
+            System.out.println("FALLO Movimiento ENEMIGO");
         }
     }
     
     
-    public void Bomba(){
-        int ContadorB = 0; 
-        for (Bomba bomb : LBomba) {
+    public void Bomb(){
+         int bombs = 0; 
+        for (Bomb bomb : arrayBomb) {
             
-          bomb.setTEBomba(bomb.getTEBomba()+100);
+          bomb.setTimeExplosion(bomb.getTimeExplosion()+100);
           
-                    if (LoggedUser.BACK_MAP[bomb.getFila()][bomb.getColumna()].isBomba()){
-                            LoggedUser.BACK_MAP[bomb.getFila()][bomb.getColumna()].setBomba(false);
+                    if (LoggedUser.BACK_MAP[bomb.getRow()][bomb.getColumn()].isBomb()){
+                            LoggedUser.BACK_MAP[bomb.getRow()][bomb.getColumn()].setBomb(false);
                     }
                     else{
-                        LoggedUser.BACK_MAP[bomb.getFila()][bomb.getColumna()].setBomba(true);
+                        LoggedUser.BACK_MAP[bomb.getRow()][bomb.getColumn()].setBomb(true);
                     }                
           
-            if (bomb.getTEBomba()==1000) {
+            if (bomb.getTimeExplosion()==1000) {
                 
-                bomb.setTiempo(bomb.getTiempo()-1);
-                    bomb.setTEBomba(0);
+                bomb.setTime(bomb.getTime()-1);
+                    bomb.setTimeExplosion(0);
                     
-                if (bomb.getTiempo()==0) {
-                    LoggedUser.BACK_MAP[bomb.getFila()][bomb.getColumna()].setBomba(false);
-                    Explosion(bomb.getFila(),bomb.getColumna());
+                if (bomb.getTime()==0) {
+                    LoggedUser.BACK_MAP[bomb.getRow()][bomb.getColumn()].setBomb(false);
+                    Explosion(bomb.getRow(),bomb.getColumn());
                     return;
                 }
             }
-            ContadorB++;
+            bombs++;
         }
     }
     
@@ -359,13 +361,13 @@ public class ThreadGame extends Thread{
         try {
             LoggedUser.BACK_MAP[fila][columna].setExplocion(true);
             
-            if (LoggedUser.BACK_MAP[fila][columna].isExplocion() && LoggedUser.BACK_MAP[fila][columna].isEnemigo()) {
-                LoggedUser.BACK_MAP[fila][columna].setEnemigo(false);
+            if (LoggedUser.BACK_MAP[fila][columna].isExplocion() && LoggedUser.BACK_MAP[fila][columna].isEnemy()) {
+                LoggedUser.BACK_MAP[fila][columna].setEnemy(false);
             }
-            else if (LoggedUser.BACK_MAP[fila][columna].isExplocion() && LoggedUser.BACK_MAP[fila][columna].isLadrillo()) {
-                LoggedUser.BACK_MAP[fila][columna].setLadrillo(false);
+            else if (LoggedUser.BACK_MAP[fila][columna].isExplocion() && LoggedUser.BACK_MAP[fila][columna].isBrick()) {
+                LoggedUser.BACK_MAP[fila][columna].setBrick(false);
             }
-            else if (LoggedUser.BACK_MAP[fila][columna].isExplocion() && LoggedUser.BACK_MAP[fila][columna].isJugador()) {
+            else if (LoggedUser.BACK_MAP[fila][columna].isExplocion() && LoggedUser.BACK_MAP[fila][columna].isPlayer()) {
                 life--;
                 jLife.setText(Integer.toString(life));
             }
@@ -376,13 +378,13 @@ public class ThreadGame extends Thread{
         try {
             LoggedUser.BACK_MAP[fila-explosion][columna].setExplocion(true);
             
-            if (LoggedUser.BACK_MAP[fila-explosion][columna].isExplocion() && LoggedUser.BACK_MAP[fila-explosion][columna].isEnemigo()) {
-                LoggedUser.BACK_MAP[fila-explosion][columna].setEnemigo(false);
+            if (LoggedUser.BACK_MAP[fila-explosion][columna].isExplocion() && LoggedUser.BACK_MAP[fila-explosion][columna].isEnemy()) {
+                LoggedUser.BACK_MAP[fila-explosion][columna].setEnemy(false);
             }
-            else if (LoggedUser.BACK_MAP[fila-explosion][columna].isExplocion() && LoggedUser.BACK_MAP[fila-explosion][columna].isLadrillo()) {
-                LoggedUser.BACK_MAP[fila-explosion][columna].setLadrillo(false);
+            else if (LoggedUser.BACK_MAP[fila-explosion][columna].isExplocion() && LoggedUser.BACK_MAP[fila-explosion][columna].isBrick()) {
+                LoggedUser.BACK_MAP[fila-explosion][columna].setBrick(false);
             }
-            else if (LoggedUser.BACK_MAP[fila-explosion][columna].isExplocion() && LoggedUser.BACK_MAP[fila-explosion][columna].isJugador()) {
+            else if (LoggedUser.BACK_MAP[fila-explosion][columna].isExplocion() && LoggedUser.BACK_MAP[fila-explosion][columna].isPlayer()) {
                 life--;
                 jLife.setText(Integer.toString(life));
             }
@@ -393,13 +395,13 @@ public class ThreadGame extends Thread{
         try {
             LoggedUser.BACK_MAP[fila+explosion][columna].setExplocion(true);
             
-            if (LoggedUser.BACK_MAP[fila+explosion][columna].isExplocion() && LoggedUser.BACK_MAP[fila+explosion][columna].isEnemigo()) {
-                LoggedUser.BACK_MAP[fila+explosion][columna].setEnemigo(false);
+            if (LoggedUser.BACK_MAP[fila+explosion][columna].isExplocion() && LoggedUser.BACK_MAP[fila+explosion][columna].isEnemy()) {
+                LoggedUser.BACK_MAP[fila+explosion][columna].setEnemy(false);
             }
-            else if (LoggedUser.BACK_MAP[fila+explosion][columna].isExplocion() && LoggedUser.BACK_MAP[fila+explosion][columna].isLadrillo()) {
-                LoggedUser.BACK_MAP[fila+explosion][columna].setLadrillo(false);
+            else if (LoggedUser.BACK_MAP[fila+explosion][columna].isExplocion() && LoggedUser.BACK_MAP[fila+explosion][columna].isBrick()) {
+                LoggedUser.BACK_MAP[fila+explosion][columna].setBrick(false);
             }
-            else if (LoggedUser.BACK_MAP[fila+explosion][columna].isExplocion() && LoggedUser.BACK_MAP[fila+explosion][columna].isJugador()) {
+            else if (LoggedUser.BACK_MAP[fila+explosion][columna].isExplocion() && LoggedUser.BACK_MAP[fila+explosion][columna].isPlayer()) {
                 life--;
                 jLife.setText(Integer.toString(life));
             }
@@ -410,13 +412,13 @@ public class ThreadGame extends Thread{
         try {
             LoggedUser.BACK_MAP[fila][columna-explosion].setExplocion(true);
             
-            if (LoggedUser.BACK_MAP[fila][columna-explosion].isExplocion() && LoggedUser.BACK_MAP[fila][columna-explosion].isEnemigo()) {
-                LoggedUser.BACK_MAP[fila][columna-explosion].setEnemigo(false);
+            if (LoggedUser.BACK_MAP[fila][columna-explosion].isExplocion() && LoggedUser.BACK_MAP[fila][columna-explosion].isEnemy()) {
+                LoggedUser.BACK_MAP[fila][columna-explosion].setEnemy(false);
             }
-            else if (LoggedUser.BACK_MAP[fila][columna-explosion].isExplocion() && LoggedUser.BACK_MAP[fila][columna-explosion].isLadrillo()) {
-                LoggedUser.BACK_MAP[fila][columna-explosion].setLadrillo(false);
+            else if (LoggedUser.BACK_MAP[fila][columna-explosion].isExplocion() && LoggedUser.BACK_MAP[fila][columna-explosion].isBrick()) {
+                LoggedUser.BACK_MAP[fila][columna-explosion].setBrick(false);
             }
-            else if (LoggedUser.BACK_MAP[fila][columna-explosion].isExplocion() && LoggedUser.BACK_MAP[fila][columna-explosion].isJugador()) {
+            else if (LoggedUser.BACK_MAP[fila][columna-explosion].isExplocion() && LoggedUser.BACK_MAP[fila][columna-explosion].isPlayer()) {
                 life--;
                 jLife.setText(Integer.toString(life));
             }
@@ -427,13 +429,13 @@ public class ThreadGame extends Thread{
         try {
             LoggedUser.BACK_MAP[fila][columna+explosion].setExplocion(true);
             
-            if (LoggedUser.BACK_MAP[fila][columna+explosion].isExplocion() && LoggedUser.BACK_MAP[fila][columna+explosion].isEnemigo()) {
-                LoggedUser.BACK_MAP[fila][columna+explosion].setEnemigo(false);
+            if (LoggedUser.BACK_MAP[fila][columna+explosion].isExplocion() && LoggedUser.BACK_MAP[fila][columna+explosion].isEnemy()) {
+                LoggedUser.BACK_MAP[fila][columna+explosion].setEnemy(false);
             }
-            else if (LoggedUser.BACK_MAP[fila][columna+explosion].isExplocion() && LoggedUser.BACK_MAP[fila][columna+explosion].isLadrillo()) {
-                LoggedUser.BACK_MAP[fila][columna+explosion].setLadrillo(false);
+            else if (LoggedUser.BACK_MAP[fila][columna+explosion].isExplocion() && LoggedUser.BACK_MAP[fila][columna+explosion].isBrick()) {
+                LoggedUser.BACK_MAP[fila][columna+explosion].setBrick(false);
             }
-            else if (LoggedUser.BACK_MAP[fila][columna+explosion].isExplocion() && LoggedUser.BACK_MAP[fila][columna+explosion].isJugador()) {
+            else if (LoggedUser.BACK_MAP[fila][columna+explosion].isExplocion() && LoggedUser.BACK_MAP[fila][columna+explosion].isPlayer()) {
                 life--;
                 jLife.setText(Integer.toString(life));
             }
@@ -449,9 +451,9 @@ public class ThreadGame extends Thread{
             }
         }
         
-        LBomba.removeFirst();
+        arrayBomb.removeFirst();
     }
-    */
+    
     /**
      * @return the jTable
      */
