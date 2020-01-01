@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import org.grupo11.model.Bomb;
+import org.grupo11.model.Results;
 /**
  *
  * @author Juan José Ramos
@@ -155,6 +156,8 @@ public class ThreadGame extends Thread{
                 bonus = false;
                 bomba=0;
                 explosion=1;
+                //System.out.println(LoggedUser.Nsesion + ""+ life + "" + ((tiempo+=100)/1000));
+                LoggedUser.puntos.add(new Results(LoggedUser.Nsesion, life, ((tiempo+=100)/1000)));
                 
                 nivel++;
                 

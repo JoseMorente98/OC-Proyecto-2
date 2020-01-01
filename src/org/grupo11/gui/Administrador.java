@@ -37,6 +37,7 @@ public class Administrador extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1300, 720));
         getContentPane().setLayout(null);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 130)); // NOI18N
