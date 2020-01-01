@@ -43,9 +43,9 @@ public class Map {
             case 'J':
                 objs.setPlayer(true);
                 break;
-            case 'E':
+            /*case 'E':
                 objs.setEnemy(true);
-                break;
+                break;*/
             case 'L':
                 objs.setKey(true);
                 break;
@@ -69,9 +69,9 @@ public class Map {
                 if (LoggedUser.BACK_MAP[i][j].isPlayer()) {
                     LoggedUser.FRONT_MAPA[i][j] = "J";
                 }
-                else if (LoggedUser.BACK_MAP[i][j].isEnemy()) {
+                /*else if (LoggedUser.BACK_MAP[i][j].isEnemy()) {
                     LoggedUser.FRONT_MAPA[i][j] = "E";
-                }
+                }*/
                 else if (LoggedUser.BACK_MAP[i][j].isBrick()&& LoggedUser.BACK_MAP[i][j].isBonus()) {
                     LoggedUser.FRONT_MAPA[i][j] = "B";
                 }

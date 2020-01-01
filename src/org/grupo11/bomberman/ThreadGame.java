@@ -58,7 +58,9 @@ public class ThreadGame extends Thread{
     
     @Override
     public void run(){
-        CreateEnemy();
+        
+        //CreateEnemy();
+        
         jLife.setText(Integer.toString(life));
         
         while (life>0) {
@@ -66,7 +68,7 @@ public class ThreadGame extends Thread{
 
                 if (pause == false) {
                     Player();
-                    Enemy();
+                    //Enemy();
                     Bomb();
                     Show();
                     
@@ -130,11 +132,11 @@ public class ThreadGame extends Thread{
             if (LoggedUser.BACK_MAP[dRow][dColumn].isBomb()|| LoggedUser.BACK_MAP[dRow][dColumn].isBrick()) {
                 //  NO SE MUEVE
             }
-            else if (LoggedUser.BACK_MAP[dRow][dColumn].isEnemy()) {
+            /*else if (LoggedUser.BACK_MAP[dRow][dColumn].isEnemy()) {
                 //  NO SE MUEVE Y RECIVE DAÑO
                 life--;
                 jLife.setText(Integer.toString(life));
-            }
+            }*/
             else if (LoggedUser.BACK_MAP[dRow][dColumn].isExplocion()) {
                 //  SE MUEVE Y RECIVE DAÑO
                 LoggedUser.BACK_MAP[aRow][aColumn].setPlayer(false);
@@ -161,11 +163,11 @@ public class ThreadGame extends Thread{
                 
                 nivel++;
                 
-                //LoggedUser.BACK_MAP[aRow][aColumn].setPlayer(false);
-                //LoggedUser.BACK_MAP[dRow][dColumn].setPlayer(true);
+                LoggedUser.BACK_MAP[aRow][aColumn].setPlayer(false);
+                LoggedUser.BACK_MAP[dRow][dColumn].setPlayer(true);
                 life=3;
                 jLife.setText(Integer.toString(life));
-                CreateEnemy();
+                //CreateEnemy();
             }
             else if (aRow == dRow && aColumn == dColumn) {
                 //  GANA NIVEL
@@ -227,7 +229,7 @@ public class ThreadGame extends Thread{
     }
     
     
-    
+    /*
     public void CreateEnemy(){
         Map MAP = new Map();
         MAP.CreateMap();
@@ -328,7 +330,7 @@ public class ThreadGame extends Thread{
             System.out.println("FALLO Movimiento ENEMIGO");
         }
     }
-    
+    */
     
     public void Bomb(){
          int bombs = 0; 
