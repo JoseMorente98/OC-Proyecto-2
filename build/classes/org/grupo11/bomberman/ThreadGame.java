@@ -75,7 +75,6 @@ public class ThreadGame extends Thread{
                     
                     tiempoEspera +=100;
                     jTime.setText(Integer.toString((tiempo+=100)/1000));
-                    System.out.println("*****************"+tiempo/1000+"**************************");
                 }else{
                     //pause();
                 }
@@ -159,14 +158,13 @@ public class ThreadGame extends Thread{
                 bonus = false;
                 bomba=0;
                 explosion=1;
-                System.out.println("Usuario: " + LoggedUser.Nsesion + " Vidas: "+ life + " Tiempo: " + ((tiempo)/1000));
-                LoggedUser.puntos.add(new Results(LoggedUser.Nsesion, life, ((tiempo)/1000)));
+                //System.out.println(LoggedUser.Nsesion + ""+ life + "" + ((tiempo+=100)/1000));
+                LoggedUser.puntos.add(new Results(LoggedUser.Nsesion, life, ((tiempo+=100)/1000)));
                 
                 nivel++;
                 
                 LoggedUser.BACK_MAP[aRow][aColumn].setPlayer(false);
                 LoggedUser.BACK_MAP[dRow][dColumn].setPlayer(true);
-                tiempo = 0;
                 life=3;
                 jLife.setText(Integer.toString(life));
                 //CreateEnemy();

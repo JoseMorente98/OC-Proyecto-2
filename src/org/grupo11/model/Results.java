@@ -19,7 +19,14 @@ public class Results {
 
     public Results(String user, int points, int time) {
         this.user = user;
-        this.points = points;
+        //Si tiene 3 vidas le doy 25 puntos, si tiene 2 vidas 10 pts y con 1 vida 5 pts.
+        if (points == 3) {
+            this.points = 25;
+        }else if (points == 2) {
+            this.points = 10;
+        }else{
+            this.points = 5;
+        }    
         this.time = time;
     }
 
