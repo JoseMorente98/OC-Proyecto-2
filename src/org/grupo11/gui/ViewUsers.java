@@ -40,15 +40,15 @@ public class ViewUsers extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1300, 720));
         getContentPane().setLayout(null);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 100)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 110)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Gestión Usuarios");
         jLabel2.setToolTipText("");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(430, 80, 790, 210);
+        jLabel2.setBounds(420, 90, 790, 210);
 
         jButton2.setFont(new java.awt.Font("Segoe UI Light", 0, 30)); // NOI18N
-        jButton2.setText("VER USUARIOS");
+        jButton2.setText("Ver Usuarios");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -58,7 +58,7 @@ public class ViewUsers extends javax.swing.JFrame {
         jButton2.setBounds(570, 360, 500, 50);
 
         jButton3.setFont(new java.awt.Font("Segoe UI Light", 0, 30)); // NOI18N
-        jButton3.setText("ELIMINAR USUARIOS");
+        jButton3.setText("Eliminar Usuarios");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -68,7 +68,7 @@ public class ViewUsers extends javax.swing.JFrame {
         jButton3.setBounds(570, 430, 500, 50);
 
         jButton4.setFont(new java.awt.Font("Segoe UI Light", 0, 30)); // NOI18N
-        jButton4.setText("ACEPTAR USUARIOS");
+        jButton4.setText("Aceptar Usuarios");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -78,7 +78,7 @@ public class ViewUsers extends javax.swing.JFrame {
         jButton4.setBounds(570, 500, 500, 50);
 
         jButton1.setFont(new java.awt.Font("Segoe UI Light", 0, 30)); // NOI18N
-        jButton1.setText("Regresar");
+        jButton1.setText("<< Regresar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
