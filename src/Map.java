@@ -15,14 +15,10 @@ import java.util.TimerTask;
  */
 public class Map {
 
-    private final pPort port;
-    private Timer timer = new Timer();
-    private Timer timerMatriz = new Timer();
-    private TimerTask timerTask;
+
     
     public Map() {
-        port = new pPort();
-        port.setAllDataBits((short) 0); 
+      
     }
         
     public void CreateMap(){
@@ -53,9 +49,9 @@ public class Map {
             case 'J':
                 objs.setPlayer(true);
                 break;
-            /*case 'E':
+            case 'E':
                 objs.setEnemy(true);
-                break;*/
+                break;
             case 'L':
                 objs.setKey(true);
                 break;
@@ -63,7 +59,7 @@ public class Map {
                 objs.setSpace(true);
                 break;
             case 'B':
-                objs.setBrick(true);
+                objs.setBonus(true);
                 break;
         }
         
@@ -80,15 +76,11 @@ public class Map {
                 for (int j = 0; j < 12; j++) {
                     if (LoggedUser.BACK_MAP[i][j].isPlayer()) {
                         LoggedUser.FRONT_MAPA[i][j] = "J";
-                        /*port.setPin((short) 2, (short) 1);
-                        port.setPin((short) 3, (short) 1);
-                        port.setPin((short) 3, (short) 0);*/
-                       //reloj(3,0,200);
                     }
-                    /*else if (LoggedUser.BACK_MAP[i][j].isEnemy()) {
+                    else if (LoggedUser.BACK_MAP[i][j].isEnemy()) {
                         LoggedUser.FRONT_MAPA[i][j] = "E";
-                    }*/
-                    else if (LoggedUser.BACK_MAP[i][j].isBrick()&& LoggedUser.BACK_MAP[i][j].isBonus()) {
+                    }
+                    else if (LoggedUser.BACK_MAP[i][j].isBonus()) {
                         LoggedUser.FRONT_MAPA[i][j] = "B";
                         /*port.setPin((short) 2, (short) 1); 
                         port.setPin((short) 3, (short) 1);
@@ -121,7 +113,14 @@ public class Map {
                        //reloj(3,0,200);
 
                     }
+                    else if (LoggedUser.BACK_MAP[i][j].isExplocion() && LoggedUser.BACK_MAP[i][j].isBonus()) {
+                        LoggedUser.FRONT_MAPA[i][j] = "B";
+                        /*port.setPin((short) 2, (short) 1); 
+                        port.setPin((short) 3, (short) 1);
+                        port.setPin((short) 3, (short) 0);*/
+                       //reloj(3,0,200);
 
+                    }
                     else if (LoggedUser.BACK_MAP[i][j].isExplocion()) {
                         LoggedUser.FRONT_MAPA[i][j] = "Ñ";
                         /*port.setPin((short) 2, (short) 1); 
@@ -152,30 +151,6 @@ public class Map {
         //}
     }
     
-    public void matriz(int puerto, int bit, int tiempo) {
-        timerTask = new TimerTask()
-        {
-            public void run() 
-            {
-                // Aquí el código que queremos ejecutar.
-                port.setPin((short) puerto, (short) bit); 
-            }
-        };
-        // Dentro de 0 milisegundos avísame cada 1 milisegundos
-        timer.scheduleAtFixedRate(timerTask, 0, tiempo);
-    }
-    
-    public void reloj(int puerto, int bit, int tiempo) {
-        timerTask = new TimerTask()
-        {
-            public void run() 
-            {
-                // Aquí el código que queremos ejecutar.
-                port.setPin((short) puerto, (short) bit); 
-            }
-        };
-        // Dentro de 0 milisegundos avísame cada 1 milisegundos
-        timer.scheduleAtFixedRate(timerTask, 0, tiempo);
-    }
+
     
 }

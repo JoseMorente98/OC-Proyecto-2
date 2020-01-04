@@ -121,10 +121,10 @@ public class Game extends javax.swing.JFrame {
             }
         });
         getContentPane().add(loginButton);
-        loginButton.setBounds(1010, 630, 175, 40);
+        loginButton.setBounds(950, 640, 175, 40);
 
         jTable1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jTable1.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Segoe UI Light", 0, 48)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -140,7 +140,7 @@ public class Game extends javax.swing.JFrame {
         jTable1.setIntercellSpacing(new java.awt.Dimension(0, 0));
         jTable1.setMaximumSize(new java.awt.Dimension(0, 0));
         jTable1.setMinimumSize(new java.awt.Dimension(0, 0));
-        jTable1.setRowHeight(20);
+        jTable1.setRowHeight(55);
         jScrollPane1.setViewportView(jTable1);
 
         getContentPane().add(jScrollPane1);
@@ -150,19 +150,19 @@ public class Game extends javax.swing.JFrame {
         life.setForeground(new java.awt.Color(255, 255, 255));
         life.setText("--");
         getContentPane().add(life);
-        life.setBounds(1010, 530, 50, 30);
+        life.setBounds(1050, 530, 50, 30);
 
         time.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         time.setForeground(new java.awt.Color(255, 255, 255));
         time.setText("--");
         getContentPane().add(time);
-        time.setBounds(1010, 570, 50, 30);
+        time.setBounds(1050, 570, 50, 30);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Life:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(940, 530, 40, 30);
+        jLabel3.setBounds(940, 530, 60, 30);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -178,6 +178,7 @@ public class Game extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        ThreadGame.endGame();
         Usuario usuario = new Usuario();
         this.setVisible(false);
         usuario.setVisible(true);

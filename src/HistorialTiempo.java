@@ -5,24 +5,31 @@
  */
 
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 /**
  *
  * @author Javier C
  */
-public class DeleteUser extends javax.swing.JFrame {
+public class HistorialTiempo extends javax.swing.JFrame {
 
     /**
      * Creates new form ListUsers
      */
     DefaultTableModel mos;
     String data[][] = {};
-    String cabeza[] = {"Nombre de Usuario", "Contraseña"};
+    String cabeza[] = {"Usuario", "Tiempo"};
 
-    public DeleteUser() {
+    public HistorialTiempo() {
         initComponents();
         mos = new DefaultTableModel(data, cabeza);
         jTable1.setModel(mos);
@@ -45,7 +52,7 @@ public class DeleteUser extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1240, 740));
+        setMinimumSize(new java.awt.Dimension(1280, 740));
         setSize(new java.awt.Dimension(1280, 740));
         getContentPane().setLayout(null);
 
@@ -61,21 +68,16 @@ public class DeleteUser extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(jTable1);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(100, 200, 700, 400);
+        jScrollPane1.setBounds(100, 210, 700, 400);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 130)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 100)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Eliminar Usuario");
+        jLabel2.setText("Historial Tiempo");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(100, 50, 970, 130);
+        jLabel2.setBounds(100, 50, 920, 160);
 
         jButton1.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         jButton1.setText("<< Regresar");
@@ -85,53 +87,20 @@ public class DeleteUser extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(110, 610, 200, 40);
+        jButton1.setBounds(100, 620, 200, 40);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/grupo11/recursos/Listas.png"))); // NOI18N
-        jLabel3.setMaximumSize(new java.awt.Dimension(1280, 740));
-        jLabel3.setMinimumSize(new java.awt.Dimension(1280, 740));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/grupo11/recursos/Historial.png"))); // NOI18N
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(0, 0, 1280, 740);
+        jLabel3.setBounds(0, 0, 1280, 720);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.setVisible(false);
-        ViewUsers viewUsers = new ViewUsers();
-        viewUsers.setVisible(true);
-
+        Usuario administrador = new Usuario();
+        administrador.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        int index = jTable1.getSelectedRow();
-        TableModel model = jTable1.getModel();
-        String value1 = model.getValueAt(index, 0).toString();
-        try {
-                for (User user : LoggedUser.solicitud) {
-                    if (user.getUsername().equals(value1)) {
-                        int indice = LoggedUser.solicitud.indexOf(user);
-                        LoggedUser.solicitud.remove(indice);
-                        JOptionPane.showMessageDialog(null, "Eliminas a : " + value1);
-                        break;
-                    }
-                }
-                try {
-            if (LoggedUser.solicitud.size() != 0) {
-                for (User user : LoggedUser.solicitud) {
-                        String usuario[] = {user.getUsername(), user.getPassword()};
-                        mos.addRow(usuario);          
-                }
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Algo ha ocurrido mal");
-        }
-                
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Algo ha ocurrido mal");
-        }
-        
-    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -150,23 +119,21 @@ public class DeleteUser extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DeleteUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TopTiempo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DeleteUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TopTiempo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DeleteUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TopTiempo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DeleteUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TopTiempo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DeleteUser().setVisible(true);
+                new TopTiempo().setVisible(true);
             }
         });
     }
@@ -181,14 +148,17 @@ public class DeleteUser extends javax.swing.JFrame {
 
     private void inicial() {
         try {
-            if (LoggedUser.solicitud.size() != 0) {
-                for (User user : LoggedUser.solicitud) {
-                        String usuario[] = {user.getUsername(), user.getPassword()};
-                        mos.addRow(usuario);          
+            if (LoggedUser.puntos.size() != 0) {
+                for (Results user : LoggedUser.puntos) {
+                    if (user.getUser().equals(LoggedUser.Nsesion)) {
+                        String usuario[] = {user.getUser(),String.valueOf(user.getTime())};
+                        mos.addRow(usuario);    
+                    }
                 }
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Algo ha ocurrido mal");
         }
     }
+
 }

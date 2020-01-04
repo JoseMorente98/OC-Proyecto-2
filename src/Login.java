@@ -58,14 +58,11 @@ public class Login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        password = new javax.swing.JTextField();
         user = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        loginButton = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         loginButton1 = new javax.swing.JButton();
-        loginButton2 = new javax.swing.JButton();
-        loginButton3 = new javax.swing.JButton();
+        password = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -73,7 +70,7 @@ public class Login extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1280, 740));
         getContentPane().setLayout(null);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 130)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 100)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Inicio de Sesión");
         jLabel2.setToolTipText("");
@@ -91,10 +88,6 @@ public class Login extends javax.swing.JFrame {
         jLabel4.setText("¿No tienes una cuenta?");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(250, 570, 257, 40);
-
-        password.setFont(new java.awt.Font("Segoe UI Light", 0, 22)); // NOI18N
-        getContentPane().add(password);
-        password.setBounds(70, 460, 250, 40);
 
         user.setFont(new java.awt.Font("Segoe UI Light", 0, 22)); // NOI18N
         user.addActionListener(new java.awt.event.ActionListener() {
@@ -115,16 +108,6 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(jButton1);
         jButton1.setBounds(250, 610, 250, 40);
 
-        loginButton.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
-        loginButton.setText("0");
-        loginButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(loginButton);
-        loginButton.setBounds(350, 360, 250, 40);
-
         jLabel5.setFont(new java.awt.Font("Segoe UI Light", 0, 30)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Cotraseña");
@@ -140,26 +123,8 @@ public class Login extends javax.swing.JFrame {
         });
         getContentPane().add(loginButton1);
         loginButton1.setBounds(70, 520, 250, 40);
-
-        loginButton2.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
-        loginButton2.setText("1");
-        loginButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButton2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(loginButton2);
-        loginButton2.setBounds(350, 410, 250, 40);
-
-        loginButton3.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
-        loginButton3.setText("Demo");
-        loginButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButton3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(loginButton3);
-        loginButton3.setBounds(350, 520, 250, 40);
+        getContentPane().add(password);
+        password.setBounds(70, 460, 250, 40);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/grupo11/recursos/Wallpaper.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -182,58 +147,6 @@ public class Login extends javax.swing.JFrame {
     private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_userActionPerformed
-
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        for (int x = 0; x < 5000; x++) {
-            for (int i = 0; i < 12; i++) {
-            //System.out.println(i);
-                for (int j = 0; j < 12; j++) {
-                    
-                    if(Pausa[i][j].equals("X")) {
-                        port.setPin((short) 2, (short) 1);
-                        port.setPin((short) 3, (short) 1);
-                        for (int k = 0; k < 1001; k++) {
-                            if(k==1000) {
-                                port.setPin((short) 3, (short) 0);
-                            }
-                        }
-                        System.err.print(1);
-                        if(j==11) {
-                                                    System.err.println("");
-
-                    }
-                    } else if(Pausa[i][j].equals(" ")) {
-                        port.setPin((short) 2, (short) 0);
-                        port.setPin((short) 3, (short) 1);
-                        for (int k = 0; k < 1001; k++) {
-                            if(k==1000) {
-                                port.setPin((short) 3, (short) 0);
-                            }
-                        }
-                        
-                        System.err.print(" ");
-                        if(j==11) {
-                            System.err.println("");
-                    }
-                    }
-                }
-            }
-       }
-        /*        port.setPin((short) 2, (short) 0);      
-        port.setPin((short) 3, (short) 1);
-        port.setPin((short) 3, (short) 0);
-        //port.setPin((short) 3, (short) 0);
-        /*timerTask = new TimerTask()
-        {
-            public void run() 
-            {
-                // Aquí el código que queremos ejecutar.
-                port.setPin((short) 3, (short) 0); 
-            }
-        };
-        // Dentro de 0 milisegundos avísame cada 1 milisegundos
-        timer.scheduleAtFixedRate(timerTask, 1000, 1);*/
-    }//GEN-LAST:event_loginButtonActionPerformed
 
     public void reloj(int puerto, int bit, int tiempo) {
         timerTask = new TimerTask()
@@ -261,6 +174,52 @@ public class Login extends javax.swing.JFrame {
                 }
             }
         }
+        
+       
+        String pass = (new String(password.getPassword()));
+        if (user.getText().equals("ADMIN") && pass.toString().equals("ORGA_DIC_2019")) {
+            LoggedUser.Nsesion = "ADMIN";
+            JOptionPane.showMessageDialog(null, user.getText() + " " + pass);
+            Administrador admin = new Administrador();
+            admin.setVisible(true);
+            JOptionPane.showMessageDialog(null, "Bienvenido administrador");
+            this.setVisible(false);
+            
+        } else if(user.getText().equals("a") && pass.toString().equals("a")){
+            LoggedUser.Nsesion = "a";
+                        JOptionPane.showMessageDialog(null, "Bienvenido "+ this.user.getText());
+                        Usuario gv = new Usuario();
+                        gv.setVisible(true);
+                        this.setVisible(false);
+        }
+        else if(user.getText().equals("") || pass.equals("") ) {
+            JOptionPane.showMessageDialog(null, "No puede dejar campos en blanco");
+            
+        } else {
+            boolean existente = false;
+            for (User user : LoggedUser.solicitud) {
+                if (user.getUsername().equals(this.user.getText()) && user.getPassword().equals(pass)) {
+                    existente = true;
+                    if (user.getAprovacion() == true) {
+                        LoggedUser.Nsesion = user.getUsername();
+                        JOptionPane.showMessageDialog(null, "Bienvenido "+ this.user.getText());
+                        Usuario gv = new Usuario();
+                        gv.setVisible(true);
+                        this.setVisible(false);
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Su cuenta no se ha aprovado todavía");
+                    }
+                }
+            }
+            if (existente == false) {
+                JOptionPane.showMessageDialog(null, "Usuario no encontrado");
+            }
+        }
+        
+        
+        
+        
         
         /*for (int i = 0; i < 12; i++) {
             for (int j = 0; j < 12; j++) {
@@ -346,94 +305,6 @@ public class Login extends javax.swing.JFrame {
         
     }//GEN-LAST:event_loginButton1ActionPerformed
 
-    private void loginButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton2ActionPerformed
-       // TODO add your handling code here:
-        port.setPin((short) 2, (short) 1);
-        port.setPin((short) 3, (short) 1);
-        port.setPin((short) 3, (short) 0);
-        /*timerTask = new TimerTask()
-        {
-            public void run() 
-            {
-                // Aquí el código que queremos ejecutar.
-                port.setPin((short) 3, (short) 0); 
-            }
-        };
-        // Dentro de 0 milisegundos avísame cada 1 milisegundos
-        timer.scheduleAtFixedRate(timerTask, 1000, 1);
-        ///port.setPin((short) 3, (short) 0);*/
-        
-        /*for (int i = 0; i < 12; i++) {
-            for (int j = 0; j < 12; i++) {
-                // Aquí el código que queremos ejecutar.
-            port.setPin((short) 2, (short) 1);
-            port.setPin((short) 3, (short) 1);
-            port.setPin((short) 3, (short) 0);
-            }
-            
-        }
-            /*timerTask = new TimerTask()
-            {
-                public void run() 
-                {
-                    for (int i = 0; i < 12; i++) {
-                    // Aquí el código que queremos ejecutar.
-                    port.setPin((short) 2, (short) 1);
-                    port.setPin((short) 3, (short) 1);
-                    timerTask = new TimerTask()
-                    {
-                        public void run() 
-                        {
-                            // Aquí el código que queremos ejecutar.
-                            port.setPin((short) 3, (short) 0); 
-                        }
-                    };
-                    // Dentro de 0 milisegundos avísame cada 1 milisegundos
-                    timer.scheduleAtFixedRate(timerTask, 0, 1);
-                    }
-                }
-            };
-            // Dentro de 0 milisegundos avísame cada 1 milisegundos
-            timer.scheduleAtFixedRate(timerTask, 0, 1);*/
-            
-        
-    }//GEN-LAST:event_loginButton2ActionPerformed
-
-    private void loginButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton3ActionPerformed
-        // TODO add your handling code here:
-        if (user.getText().equals("ADMIN") && password.getText().equals("ORGA_DIC_2019")) {
-            LoggedUser.Nsesion = "ADMIN";
-            JOptionPane.showMessageDialog(null, user.getText() + password.getText());
-            Administrador admin = new Administrador();
-            admin.setVisible(true);
-            JOptionPane.showMessageDialog(null, "Bienvenido administrador");
-            this.setVisible(false);
-            
-        } else {
-            Usuario gv = new Usuario();
-                        gv.setVisible(true);
-                        this.setVisible(false);
-            /*boolean existente = false;
-            for (User user : LoggedUser.solicitud) {
-                if (user.getUsername().equals(this.user.getText()) && user.getPassword().equals(password.getText())) {
-                    existente = true;
-                    if (user.getAprovacion() == true) {
-                        LoggedUser.Nsesion = user.getUsername();
-                        Usuario gv = new Usuario();
-                        gv.setVisible(true);
-                        this.setVisible(false);
-
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Su cuenta no se ha aprovado todavía");
-                    }
-                }
-            }*/
-            /*if (existente == false) {
-                JOptionPane.showMessageDialog(null, "Usuario no encontrado");
-            }*/
-        }
-    }//GEN-LAST:event_loginButton3ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -480,11 +351,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JButton loginButton;
     private javax.swing.JButton loginButton1;
-    private javax.swing.JButton loginButton2;
-    private javax.swing.JButton loginButton3;
-    private javax.swing.JTextField password;
+    private javax.swing.JPasswordField password;
     private javax.swing.JTextField user;
     // End of variables declaration//GEN-END:variables
 }

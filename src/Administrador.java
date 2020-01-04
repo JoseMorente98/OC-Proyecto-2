@@ -34,6 +34,7 @@ public class Administrador extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -55,7 +56,7 @@ public class Administrador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(570, 360, 500, 50);
+        jButton2.setBounds(570, 330, 500, 50);
 
         jButton3.setFont(new java.awt.Font("Segoe UI Light", 0, 30)); // NOI18N
         jButton3.setText("TOP 10 Puntos");
@@ -65,7 +66,7 @@ public class Administrador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(570, 430, 500, 50);
+        jButton3.setBounds(570, 390, 500, 50);
 
         jButton4.setFont(new java.awt.Font("Segoe UI Light", 0, 30)); // NOI18N
         jButton4.setText("Usuarios");
@@ -75,7 +76,7 @@ public class Administrador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(570, 500, 500, 50);
+        jButton4.setBounds(570, 460, 500, 50);
 
         jButton1.setFont(new java.awt.Font("Segoe UI Light", 0, 30)); // NOI18N
         jButton1.setText("Cerrar Sesión");
@@ -85,7 +86,17 @@ public class Administrador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(570, 570, 500, 50);
+        jButton1.setBounds(570, 580, 500, 50);
+
+        jButton5.setFont(new java.awt.Font("Segoe UI Light", 0, 30)); // NOI18N
+        jButton5.setText("Control");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton5);
+        jButton5.setBounds(570, 520, 500, 50);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/grupo11/recursos/Dashboard.png"))); // NOI18N
         getContentPane().add(jLabel1);
@@ -119,6 +130,12 @@ public class Administrador extends javax.swing.JFrame {
         login.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        Control login = new Control();
+        login.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,6 +177,7 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

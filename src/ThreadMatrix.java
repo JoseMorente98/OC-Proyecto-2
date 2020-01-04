@@ -61,7 +61,15 @@ public class ThreadMatrix implements Runnable {
                                 port.setPin((short) 3, (short) 0);
                             }
                         }
-                    } else if (LoggedUser.FRONT_MAPA[i][j].equals("L")) {
+                    } else if (LoggedUser.FRONT_MAPA[i][j].equals("E")) {
+                        port.setPin((short) 2, (short) 1);
+                        port.setPin((short) 3, (short) 1);
+                        for (int k = 0; k < 1001; k++) {
+                            if (k == 1000) {
+                                port.setPin((short) 3, (short) 0);
+                            }
+                        }
+                    }else if (LoggedUser.FRONT_MAPA[i][j].equals("L")) {
                         port.setPin((short) 2, (short) 1);
                         port.setPin((short) 3, (short) 1);
                         for (int k = 0; k < 1001; k++) {

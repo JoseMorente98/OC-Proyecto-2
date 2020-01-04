@@ -24,8 +24,10 @@ public class Results {
             this.points = 25;
         }else if (points == 2) {
             this.points = 10;
-        }else{
+        }else if (points == 1){
             this.points = 5;
+        } else {
+            this.points = 0;
         }    
         this.time = time;
     }

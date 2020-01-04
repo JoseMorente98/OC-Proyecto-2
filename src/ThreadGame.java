@@ -37,6 +37,10 @@ public class ThreadGame extends Thread {
     Random rn2;
 
     private final pPort port;
+    
+    public static void endGame() {
+        LoggedUser.tgame.stop();
+    }
 
     public ThreadGame() {
         port = new pPort();
@@ -71,7 +75,7 @@ public class ThreadGame extends Thread {
                 if (pause == false) {
                     
                     Player();
-                    //Enemy();
+                    Enemy();
                     Bomb();
                     Show();
                     tiempoEspera += 100;
@@ -87,6 +91,9 @@ public class ThreadGame extends Thread {
         }
 
         if (life == 0) {
+            Lose l = new Lose(); 
+            l.setVisible(true);
+            LoggedUser.puntos.add(new Results(LoggedUser.Nsesion, life, ((tiempo) / 1000)));
             LoggedUser.tgame.stop();
         }
     }
@@ -132,11 +139,11 @@ public class ThreadGame extends Thread {
             
             if (LoggedUser.BACK_MAP[dRow][dColumn].isBomb() || LoggedUser.BACK_MAP[dRow][dColumn].isBrick()) {
                 //  NO SE MUEVE
-            } /*else if (LoggedUser.BACK_MAP[dRow][dColumn].isEnemy()) {
+            } else if (LoggedUser.BACK_MAP[dRow][dColumn].isEnemy()) {
                 //  NO SE MUEVE Y RECIVE DAÑO
                 life--;
                 jLife.setText(Integer.toString(life));
-            }*/ else if (LoggedUser.BACK_MAP[dRow][dColumn].isExplocion()) {
+            } else if (LoggedUser.BACK_MAP[dRow][dColumn].isExplocion()) {
                 //  SE MUEVE Y RECIVE DAÑO
                 LoggedUser.BACK_MAP[aRow][aColumn].setPlayer(false);
                 LoggedUser.BACK_MAP[dRow][dColumn].setPlayer(true);
@@ -158,15 +165,21 @@ public class ThreadGame extends Thread {
                 LoggedUser.puntos.add(new Results(LoggedUser.Nsesion, life, ((tiempo) / 1000)));
 
                 nivel++;
-
-                LoggedUser.BACK_MAP[aRow][aColumn].setPlayer(false);
-                LoggedUser.BACK_MAP[dRow][dColumn].setPlayer(true);
+                
+                
                 tiempo = 0;
                 life = 3;
                 jLife.setText(Integer.toString(life));
-                //CreateEnemy();
+                
+                Win w = new Win();
+                w.setVisible(true);
+                if (LoggedUser.FRONT_MAPA[dRow][dColumn] == "J") {
+                    LoggedUser.BACK_MAP[aRow][aColumn].setPlayer(false);
+                LoggedUser.BACK_MAP[dRow][dColumn].setPlayer(true);
+                    LoggedUser.tgame.stop();
+                }
             } else if (aRow == dRow && aColumn == dColumn) {
-                //  GANA NIVEL
+                
                 LoggedUser.BACK_MAP[aRow][aColumn].setBomb(true);
             } else {
                 //  SE MUEVE
@@ -202,56 +215,7 @@ public class ThreadGame extends Thread {
         
         
     }
-    public void mostrarMapa(){
 
-            for (int i = 0; i < 12; i++) {
-            //System.out.println(i);
-                for (int j = 0; j < 12; j++) {                    
-                    if(LoggedUser.FRONT_MAPA[i][j].equals("X")) {
-                        port.setPin((short) 2, (short) 1);
-                        port.setPin((short) 3, (short) 1);
-                        for (int k = 0; k < 1001; k++) {
-                            if(k==1000) {
-                                port.setPin((short) 3, (short) 0);
-                            }
-                        }                        
-                    } else if(LoggedUser.FRONT_MAPA[i][j].equals("J")) {
-                        port.setPin((short) 2, (short) 1);
-                        port.setPin((short) 3, (short) 1);
-                        for (int k = 0; k < 1001; k++) {
-                            if(k==1000) {
-                                port.setPin((short) 3, (short) 0);
-                            }
-                        }                        
-                    } else if(LoggedUser.FRONT_MAPA[i][j].equals("L")) {
-                        port.setPin((short) 2, (short) 1);
-                        port.setPin((short) 3, (short) 1);
-                        for (int k = 0; k < 1001; k++) {
-                            if(k==1000) {
-                                port.setPin((short) 3, (short) 0);
-                            }
-                        }                        
-                    } if(LoggedUser.FRONT_MAPA[i][j].equals("B")) {
-                        port.setPin((short) 2, (short) 1);
-                        port.setPin((short) 3, (short) 1);
-                        for (int k = 0; k < 1001; k++) {
-                            if(k==1000) {
-                                port.setPin((short) 3, (short) 0);
-                            }
-                        }                        
-                    } else if(LoggedUser.FRONT_MAPA[i][j].equals(" ")) {
-                        port.setPin((short) 2, (short) 0);
-                        port.setPin((short) 3, (short) 1);
-                        for (int k = 0; k < 1001; k++) {
-                            if(k==1000) {
-                                port.setPin((short) 3, (short) 0);
-                            }
-                        }                        
-                    }
-                }
-            }
-       
-    }
     public void Pause() {
         if (pause == true && movement == 5) {
             pause = false;
@@ -276,8 +240,8 @@ public class ThreadGame extends Thread {
         }
     }
 
-    /*
-    public void CreateEnemy(){
+    
+    /*public void CreateEnemy(){
         Map MAP = new Map();
         MAP.CreateMap();
         
@@ -288,9 +252,9 @@ public class ThreadGame extends Thread {
             rn2=new Random();
             ShowEnemy();
         }
-    }
+    }*/
     
-    public void ShowEnemy(){
+    /*public void ShowEnemy(){
             int fila = rn1.nextInt(12);
             int columna = rn2.nextInt(12);
             
@@ -308,11 +272,11 @@ public class ThreadGame extends Thread {
         } catch (Exception e) {
             System.out.println("ENEMIGO NO CREADO");
         }
-    }
+    }*/
     
     public void Enemy(){
         
-        if (tiempoEspera==1000) {
+        /*if (tiempoEspera==1000) {
             
             for (int i = 0; i < LoggedUser.BACK_MAP.length; i++) {
             for (int j = 0; j < LoggedUser.BACK_MAP[i].length; j++) {
@@ -345,11 +309,11 @@ public class ThreadGame extends Thread {
             tiempoEspera = 0;
         }
         
-        
+        */
     }
     
     public void MoverEnemigo(int aRow, int aColumn, int dRow, int dColumn){
-        try{
+        /*try{
             if (LoggedUser.BACK_MAP[dRow][dColumn].isBomb()|| LoggedUser.BACK_MAP[dRow][dColumn].isBrick()) {
                 //  NO SE MUEVE
             }
@@ -375,9 +339,9 @@ public class ThreadGame extends Thread {
             }
         }catch(Exception e){
             System.out.println("FALLO Movimiento ENEMIGO");
-        }
+        }*/
     }
-     */
+     
     public void Bomb() {
         int bombs = 0;
         for (Bomb bomb : arrayBomb) {
@@ -414,7 +378,8 @@ public class ThreadGame extends Thread {
                 LoggedUser.BACK_MAP[fila][columna].setEnemy(false);
             } else if (LoggedUser.BACK_MAP[fila][columna].isExplocion() && LoggedUser.BACK_MAP[fila][columna].isBrick()) {
                 LoggedUser.BACK_MAP[fila][columna].setBrick(false);
-            } else if (LoggedUser.BACK_MAP[fila][columna].isExplocion() && LoggedUser.BACK_MAP[fila][columna].isPlayer()) {
+            }
+            else if (LoggedUser.BACK_MAP[fila][columna].isExplocion() && LoggedUser.BACK_MAP[fila][columna].isPlayer()) {
                 life--;
                 jLife.setText(Integer.toString(life));
             }

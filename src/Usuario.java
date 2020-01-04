@@ -5,6 +5,7 @@
  */
 
 
+import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,6 +14,9 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -28,6 +32,7 @@ public class Usuario extends javax.swing.JFrame {
         initComponents();
         port = new pPort();
         port.setAllDataBits((short) 0);
+        username.setText(LoggedUser.Nsesion);
     }
 
     /**
@@ -43,7 +48,13 @@ public class Usuario extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        username = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jButton8 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1280, 740));
@@ -58,7 +69,7 @@ public class Usuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(570, 570, 500, 50);
+        jButton1.setBounds(580, 580, 500, 50);
 
         jButton2.setFont(new java.awt.Font("Segoe UI Light", 0, 30)); // NOI18N
         jButton2.setText("Cargar Archivo");
@@ -68,28 +79,84 @@ public class Usuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(570, 360, 500, 50);
+        jButton2.setBounds(580, 340, 500, 50);
 
         jButton3.setFont(new java.awt.Font("Segoe UI Light", 0, 30)); // NOI18N
-        jButton3.setText("Iniciar Juego");
+        jButton3.setText("Tiempo");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(570, 430, 500, 50);
+        jButton3.setBounds(830, 460, 250, 50);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 130)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 100)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Usuario");
+        jLabel2.setText("Usuario:");
         jLabel2.setToolTipText("");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(600, 90, 420, 210);
+        jLabel2.setBounds(490, 90, 400, 210);
+
+        jButton4.setFont(new java.awt.Font("Segoe UI Light", 0, 30)); // NOI18N
+        jButton4.setText("Iniciar Juego");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4);
+        jButton4.setBounds(580, 400, 500, 50);
+
+        jButton5.setFont(new java.awt.Font("Segoe UI Light", 0, 30)); // NOI18N
+        jButton5.setText("Puntos");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton5);
+        jButton5.setBounds(580, 460, 240, 50);
+
+        jButton6.setFont(new java.awt.Font("Segoe UI Light", 0, 30)); // NOI18N
+        jButton6.setText("Acerca De");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton6);
+        jButton6.setBounds(830, 520, 250, 50);
+
+        jButton7.setFont(new java.awt.Font("Segoe UI Light", 0, 30)); // NOI18N
+        jButton7.setText("Informacion");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton7);
+        jButton7.setBounds(580, 520, 240, 50);
+
+        username.setFont(new java.awt.Font("SansSerif", 0, 75)); // NOI18N
+        username.setForeground(new java.awt.Color(255, 255, 255));
+        username.setToolTipText("");
+        getContentPane().add(username);
+        username.setBounds(900, 150, 230, 100);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/grupo11/recursos/Dashboard.png"))); // NOI18N
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1290, 720);
+        jLabel1.setBounds(10, 10, 1290, 720);
+
+        jButton8.setFont(new java.awt.Font("Segoe UI Light", 0, 30)); // NOI18N
+        jButton8.setText("Cerrar Sesión");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton8);
+        jButton8.setBounds(580, 530, 240, 50);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -164,10 +231,15 @@ public class Usuario extends javax.swing.JFrame {
         String rute = "";
 
         JFileChooser JfC = new JFileChooser();
-        JfC.setAcceptAllFileFilterUsed(false);
-        //JfC.setFileFilter(new FileNameExtensionFilter("Archivos con extension *." + Filtro_Archivo, Filtro_Archivo));
+        JfC.setAcceptAllFileFilterUsed(true);
         JfC.setCurrentDirectory(new File("Desktop"));
         JfC.showOpenDialog(null);
+        
+        FileFilter docx = new FileNameExtensionFilter("Bomberman File(.bomb)", "bomb");
+        JfC.addChoosableFileFilter(docx);
+        JfC.setFileFilter(docx);
+        JfC.setAcceptAllFileFilterUsed(false);       
+        
         File Archivo = JfC.getSelectedFile();
         if (Archivo != null) {
             rute = "" + Archivo;
@@ -197,11 +269,44 @@ public class Usuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        HistorialTiempo hp = new HistorialTiempo();
+        hp.setVisible(true);
+        this.setVisible(false);       
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+ // TODO add your handling code here:
         this.setVisible(false);
         Game gv = new Game();
-        gv.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+        gv.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        HistorialPuntos hp = new HistorialPuntos();
+        hp.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        
+        
+        JOptionPane.showMessageDialog(null, "Organizacion Computacional\n"+"Grupo 11\nProyecto Final\nDiciembre 2019\n" 
+         + "201801237. Josè Rafael Morente\n201801262. Juan Jose Ramos\n 201801370. Javier Antonio Chin\n201807228. Gerson Alejandro Belteton");
+        
+        
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        try {
+            File path = new File("C:\\Documents and Settings\\user\\Escritorio\\[ORGA]P_G11.pdf");
+            Desktop.getDesktop().open(path)                                                                                 ;
+        } catch (IOException e) {
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,7 +347,13 @@ public class Usuario extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables
 }

@@ -36,14 +36,15 @@ public class Register extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
         jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        pass1 = new javax.swing.JPasswordField();
+        pass2 = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1280, 740));
         setSize(new java.awt.Dimension(1280, 740));
         getContentPane().setLayout(null);
 
@@ -72,17 +73,9 @@ public class Register extends javax.swing.JFrame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(80, 420, 310, 39);
 
-        jTextField3.setFont(new java.awt.Font("Segoe UI Light", 0, 20)); // NOI18N
-        getContentPane().add(jTextField3);
-        jTextField3.setBounds(80, 470, 350, 32);
-
         jTextField1.setFont(new java.awt.Font("Segoe UI Light", 0, 20)); // NOI18N
         getContentPane().add(jTextField1);
         jTextField1.setBounds(80, 290, 350, 32);
-
-        jTextField2.setFont(new java.awt.Font("Segoe UI Light", 0, 20)); // NOI18N
-        getContentPane().add(jTextField2);
-        jTextField2.setBounds(80, 380, 350, 32);
 
         jButton1.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         jButton1.setText("Enviar Solicitud");
@@ -103,6 +96,10 @@ public class Register extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2);
         jButton2.setBounds(370, 540, 200, 41);
+        getContentPane().add(pass1);
+        pass1.setBounds(80, 380, 350, 40);
+        getContentPane().add(pass2);
+        pass2.setBounds(80, 470, 350, 40);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/grupo11/recursos/Registro.png"))); // NOI18N
         getContentPane().add(jLabel6);
@@ -127,9 +124,12 @@ public class Register extends javax.swing.JFrame {
             }
         }
         if (existing == false) {
-            if (this.jTextField2.getText().equals(this.jTextField3.getText())) {
+            String password = (new String(pass1.getPassword()));
+            String password2 = (new String(pass2.getPassword()));
+            
+            if (password.equals(password2)) {
                 JOptionPane.showMessageDialog(null, "Esperando aprobación");
-                LoggedUser.solicitud.add(new User(this.jTextField1.getText(),this.jTextField2.getText()));
+                LoggedUser.solicitud.add(new User(this.jTextField1.getText(),password));
                 System.out.println(LoggedUser.solicitud.size());
             }else {
                 JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
@@ -181,7 +181,7 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JPasswordField pass1;
+    private javax.swing.JPasswordField pass2;
     // End of variables declaration//GEN-END:variables
 }

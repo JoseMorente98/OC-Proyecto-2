@@ -45,7 +45,8 @@ public class AcceptUser extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setSize(new java.awt.Dimension(1280, 740));
+        setMinimumSize(new java.awt.Dimension(1240, 740));
+        setSize(new java.awt.Dimension(1240, 740));
         getContentPane().setLayout(null);
 
         jTable1.setFont(new java.awt.Font("Segoe UI Light", 0, 20)); // NOI18N
@@ -70,11 +71,11 @@ public class AcceptUser extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(100, 200, 700, 400);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 130)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 100)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Aceptar Usuarios");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(100, 40, 960, 150);
+        jLabel2.setBounds(100, 40, 800, 150);
 
         jButton1.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         jButton1.setText("<< Regresar");
@@ -87,8 +88,10 @@ public class AcceptUser extends javax.swing.JFrame {
         jButton1.setBounds(100, 610, 200, 40);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/grupo11/recursos/Listas.png"))); // NOI18N
+        jLabel3.setMaximumSize(new java.awt.Dimension(1280, 740));
+        jLabel3.setMinimumSize(new java.awt.Dimension(1280, 740));
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(0, 0, 1280, 720);
+        jLabel3.setBounds(0, 0, 1280, 740);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

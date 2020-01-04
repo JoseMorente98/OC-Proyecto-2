@@ -52,6 +52,7 @@ public class TopTiempo extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1240, 740));
         setSize(new java.awt.Dimension(1280, 740));
         getContentPane().setLayout(null);
 
@@ -166,9 +167,12 @@ public class TopTiempo extends javax.swing.JFrame {
         if (LoggedUser.puntos.size() != 0) {
             for (Results result : LoggedUser.puntos) {
                 String usuario[] = {result.getUser(), String.valueOf(result.getTime())};
-                if (conteo < 11) {
-                    acumulador = acumulador + "*****Jugador: " + result.getUser() + "   ***** Tiempo: " + result.getTime() + "\n";
-                    mos.addRow(usuario);
+                if (conteo < 10) {
+                    if (result.getPoints() != 0) {
+                        acumulador = acumulador + "*****Jugador: " + result.getUser() + "   ***** Tiempo: " + result.getTime() + "\n";
+                        mos.addRow(usuario);
+                        conteo++;
+                    }
                 }
 
             }

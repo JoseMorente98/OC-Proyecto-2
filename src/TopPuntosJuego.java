@@ -52,7 +52,8 @@ public class TopPuntosJuego extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setSize(new java.awt.Dimension(1280, 740));
+        setMinimumSize(new java.awt.Dimension(1240, 740));
+        setSize(new java.awt.Dimension(1240, 740));
         getContentPane().setLayout(null);
 
         jTable1.setFont(new java.awt.Font("Segoe UI Light", 0, 20)); // NOI18N
@@ -169,9 +170,12 @@ public class TopPuntosJuego extends javax.swing.JFrame {
         if (LoggedUser.puntos.size() != 0) {
             for (Results result : LoggedUser.puntos) {
                 String usuario[] = {result.getUser(), String.valueOf(result.getPoints())};
-                if (conteo < 11) {
-                    acumulador = acumulador + "*****Jugador: " + result.getUser() + "   ***** Puntos: " + result.getPoints()+ "\n";
-                    mos.addRow(usuario);
+                if (conteo < 10) {
+                    if (result.getPoints() != 0) {
+                         acumulador = acumulador + "*****Jugador: " + result.getUser() + "   ***** Puntos: " + result.getPoints()+ "\n";
+                        mos.addRow(usuario);
+                        conteo++;
+                    }
                 }
 
             }

@@ -37,10 +37,11 @@ public class ViewUsers extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1300, 720));
+        setMinimumSize(new java.awt.Dimension(1240, 740));
+        setSize(new java.awt.Dimension(1240, 740));
         getContentPane().setLayout(null);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 110)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 95)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Gestión Usuarios");
         jLabel2.setToolTipText("");
@@ -88,8 +89,10 @@ public class ViewUsers extends javax.swing.JFrame {
         jButton1.setBounds(570, 570, 500, 50);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/grupo11/recursos/Dashboard.png"))); // NOI18N
+        jLabel1.setMaximumSize(new java.awt.Dimension(1280, 740));
+        jLabel1.setMinimumSize(new java.awt.Dimension(1280, 740));
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1300, 720);
+        jLabel1.setBounds(0, 0, 1820, 740);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

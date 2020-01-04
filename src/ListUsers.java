@@ -44,7 +44,8 @@ public class ListUsers extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setSize(new java.awt.Dimension(1280, 740));
+        setMinimumSize(new java.awt.Dimension(1240, 740));
+        setSize(new java.awt.Dimension(1240, 740));
         getContentPane().setLayout(null);
 
         jTable1.setFont(new java.awt.Font("Segoe UI Light", 0, 20)); // NOI18N
